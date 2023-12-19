@@ -8,25 +8,26 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TabControl>
-            <TabItem Header="TabItem">
+            <TabItem Header="Главная">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="23*"></ColumnDefinition>
+                        <ColumnDefinition Width="374*"/>
+                        <ColumnDefinition Width="397*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height ="1*"></RowDefinition>
                         <RowDefinition Height ="1*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Button x:Name="ButtonAddAccount" Content="Button" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="0.464,2.122" Grid.Row="1"/>
-                    <ListBox Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}"/>
-                    <TextBox HorizontalAlignment="Center" Margin="0,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Center" Margin="0,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Center" Margin="0,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <Label x:Name="LabelName" Content="Название" HorizontalAlignment="Left" Margin="65,42,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="LabelType" Content="Тип кошелька" HorizontalAlignment="Left" Margin="47,76,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="LabelBalance" Content="Деньги" HorizontalAlignment="Left" Margin="52,111,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="ButtonAddAccount" Content="Добавить кошелек" HorizontalAlignment="Left" Margin="17,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.464,2.122" Grid.ColumnSpan="2" Click="ButtonAddAccount_Click"/>
+                    <ListBox x:Name="ListBoxListOfAccounts" Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                    <TextBox x:Name="TextBoxName" HorizontalAlignment="Left" Margin="79,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TextBoxType" HorizontalAlignment="Left" Margin="79,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <TextBox x:Name="TextBoxBalance" HorizontalAlignment="Left" Margin="79,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1" PreviewTextInput="TextBoxBalance_PreviewTextInput" PreviewKeyDown="TextBoxBalance_PreviewKeyDown"/>
+                    <Label x:Name="LabelName" Content="Название" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label x:Name="LabelType" Content="Тип кошелька" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Label x:Name="LabelBalance" Content="Деньги" HorizontalAlignment="Left" Margin="12,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.434,-1.579" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
