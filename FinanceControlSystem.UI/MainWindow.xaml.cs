@@ -1,15 +1,7 @@
 ﻿using FinanceControlSystem.Logics;
 using FinanceControlSystem.Logics.Models;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FinanceControlSystem.UI
 {
@@ -35,7 +27,7 @@ namespace FinanceControlSystem.UI
                 Type = TextBoxType.Text,
                 Balance = decimal.Parse(TextBoxBalance.Text),
             };
-            if (accountModel.Name == "" || accountModel.Type == "" )
+            if (accountModel.Name == "" || accountModel.Type == "")
             {
                 return;
             }
@@ -43,12 +35,25 @@ namespace FinanceControlSystem.UI
             string name = TextBoxName.Text;
             string type = TextBoxType.Text;
             string balance = TextBoxBalance.Text;
-            ListBoxListOfAccounts.Items.Add($"{name} и {type} и {balance}");
+            ListBoxListOfAccounts.Items.Add($"Название {name}, тип {type}, баланс {balance}");
             TextBoxName.Text = "";
             TextBoxType.Text = "";
             TextBoxBalance.Text = "";
         }
 
+        private void ButtonRemoveAccount_Click(object sender, RoutedEventArgs e)
+        {
+            string name = TextBoxName.Text;
+            foreach (var item in ListBoxListOfAccounts.Items)
+            {
+                if(item is AccountModel account && account.Name == name)
+                {
+                    _accountClient.RemoveAccount(name);
+                    ListBoxListOfAccounts.Items.Remove(item);
+                }
+            }
+
+        }
         private void TextBoxBalance_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             // Предотвращаем ввод пробелов
@@ -63,12 +68,27 @@ namespace FinanceControlSystem.UI
             // Предотвращаем ввод символа, если это не цифра или точка
             if (!char.IsDigit(e.Text, 0) && e.Text != ".")
             {
-                e.Handled = true; 
+                e.Handled = true;
             }
-            if(e.Text == " ")
+            if (e.Text == " ")
             {
                 e.Handled = true;
             }
         }
+
+        private void ClosePopup_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyPopup.IsOpen)
+            {
+                MyPopup.IsOpen = false;
+            }
+            else
+            {
+                MyPopup.IsOpen = true;
+            }
+            
+        }
+
+        
     }
 }

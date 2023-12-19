@@ -1,4 +1,4 @@
-﻿<Window x:Class="FinanceControlSystem.UI.MainWindow"
+﻿<Window x:Name="MainWindow1" x:Class="FinanceControlSystem.UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -19,7 +19,14 @@
                         <RowDefinition Height ="1*"></RowDefinition>
                         <RowDefinition Height ="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-
+                    <Popup x:Name="MyPopup" PlacementTarget="{Binding ElementName=ShowPopup}">
+                        <Border Background="LightGray" BorderBrush="Black" BorderThickness="1">
+                            <StackPanel Margin="100">
+                                <TextBlock Text="Привет, это всплывающее окно!" />
+                                <Button Content="Закрыть" Click="ClosePopup_Click" />
+                            </StackPanel>
+                        </Border>
+                    </Popup>
                     <Button x:Name="ButtonAddAccount" Content="Добавить кошелек" HorizontalAlignment="Left" Margin="17,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.464,2.122" Grid.ColumnSpan="2" Click="ButtonAddAccount_Click"/>
                     <ListBox x:Name="ListBoxListOfAccounts" Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=5}"/>
                     <TextBox x:Name="TextBoxName" HorizontalAlignment="Left" Margin="79,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
@@ -28,6 +35,8 @@
                     <Label x:Name="LabelName" Content="Название" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <Label x:Name="LabelType" Content="Тип кошелька" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <Label x:Name="LabelBalance" Content="Деньги" HorizontalAlignment="Left" Margin="12,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.434,-1.579" Grid.ColumnSpan="2"/>
+                    <Button x:Name="ShowPopup" Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="139,173,0,0" VerticalAlignment="Top" Click="ClosePopup_Click"/>
+                    <Button x:Name="ButtonRemoveAccount" Grid.Column="1" Content="Удалить аккаунт" HorizontalAlignment="Left" Margin="210,172,0,0" VerticalAlignment="Top" Click="ButtonRemoveAccount_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
