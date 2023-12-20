@@ -2,6 +2,7 @@
 using FinanceControlSystem.Logics.Models;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace FinanceControlSystem.UI
 {
@@ -11,11 +12,13 @@ namespace FinanceControlSystem.UI
     public partial class MainWindow : Window
     {
         private AccountClient _accountClient;
+        private WalletClient _walletClient;
 
         public MainWindow()
         {
             InitializeComponent();
             _accountClient = new AccountClient();
+            _walletClient = new WalletClient();
         }
 
 
@@ -39,6 +42,16 @@ namespace FinanceControlSystem.UI
             TextBoxName.Text = "";
             TextBoxType.Text = "";
             TextBoxBalance.Text = "";
+        }
+        private void ButtonAddWallet_Click(object sender, RoutedEventArgs e)
+        {
+            DebitWallet debitWallet = new DebitWallet(TextBoxName.Text, decimal.Parse(TextBoxBalance.Text));
+            _walletClient.AddWallet(debitWallet);
+            string name = TextBoxName.Text;
+            string type = TextBoxType.Text;
+            string balance = TextBoxBalance.Text;
+            ListBoxListOfAccounts.Items.Add($"Название {name}, тип {type}, баланс {balance}");
+
         }
 
         private void ButtonRemoveAccount_Click(object sender, RoutedEventArgs e)
@@ -89,6 +102,6 @@ namespace FinanceControlSystem.UI
             
         }
 
-        
+
     }
 }
