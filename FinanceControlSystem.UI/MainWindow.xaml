@@ -38,6 +38,8 @@
                     <Button x:Name="ShowPopup" Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="139,173,0,0" VerticalAlignment="Top" Click="ClosePopup_Click"/>
                     <Button x:Name="ButtonRemoveAccount" Grid.Column="1" Content="Удалить аккаунт" HorizontalAlignment="Left" Margin="210,172,0,0" VerticalAlignment="Top" Click="ButtonRemoveAccount_Click"/>
                     <Button x:Name="ButtonAddWallet" Grid.Column="1" Content="Добавить новый кошелек" HorizontalAlignment="Left" Margin="0,63,0,0" Grid.Row="1" VerticalAlignment="Top" Click="ButtonAddWallet_Click"/>
+                    <Button x:Name="ButtonSaveDB" Grid.Column="1" Content="Сохранить БД" HorizontalAlignment="Left" Margin="210,63,0,0" Grid.Row="1" VerticalAlignment="Top" Click="ButtonSaveDB_Click"/>
+                    <Button x:Name="ButtonLoadBD" Grid.Column="1" Content="Загрузить БД" HorizontalAlignment="Left" Margin="210,102,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Планирование">

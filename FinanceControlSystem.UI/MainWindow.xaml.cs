@@ -1,5 +1,6 @@
 ﻿using FinanceControlSystem.Logics;
 using FinanceControlSystem.Logics.Models;
+using FinanseControleSystem.Logic.Models;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml.Linq;
@@ -12,28 +13,34 @@ namespace FinanceControlSystem.UI
     public partial class MainWindow : Window
     {
         private AccountClient _accountClient;
-        private WalletClient _walletClient;
+        private DataStorage _dataStorage;
 
         public MainWindow()
         {
             InitializeComponent();
+            DataStorage data = DataStorage.ReadFromJsonFile<DataStorage>("DataStorage.json");
+            if(data == null)
+            {
+                _dataStorage = new DataStorage();
+            }
             _accountClient = new AccountClient();
-            _walletClient = new WalletClient();
         }
 
 
         private void ButtonAddAccount_Click(object sender, RoutedEventArgs e)
         {
-            AccountModel accountModel = new AccountModel()
+            ClientsFinanceModel accountModel = new ClientsFinanceModel()
             {
                 Name = TextBoxName.Text,
-                Type = TextBoxType.Text,
+                Type = Logics.Enum.ClientsFinanceType.BankAccount,
                 Balance = decimal.Parse(TextBoxBalance.Text),
             };
-            if (accountModel.Name == "" || accountModel.Type == "")
+
+            if (accountModel.Name == "")
             {
                 return;
             }
+
             _accountClient.AddAccount(accountModel);
             string name = TextBoxName.Text;
             string type = TextBoxType.Text;
@@ -45,26 +52,34 @@ namespace FinanceControlSystem.UI
         }
         private void ButtonAddWallet_Click(object sender, RoutedEventArgs e)
         {
-            DebitWallet debitWallet = new DebitWallet(TextBoxName.Text, decimal.Parse(TextBoxBalance.Text));
-            _walletClient.AddWallet(debitWallet);
+            //DebitWallet debitWallet = new DebitWallet(TextBoxName.Text, decimal.Parse(TextBoxBalance.Text));
+            //_walletClient.AddWallet(debitWallet);
+            //string name = TextBoxName.Text;
+            //string type = TextBoxType.Text;
+            //string balance = TextBoxBalance.Text;
+            //ListBoxListOfAccounts.Items.Add($"Название {name}, тип {type}, баланс {balance}");
             string name = TextBoxName.Text;
-            string type = TextBoxType.Text;
             string balance = TextBoxBalance.Text;
-            ListBoxListOfAccounts.Items.Add($"Название {name}, тип {type}, баланс {balance}");
 
+            TransactionCategoryModel category = new TransactionCategoryModel()
+            {
+                Name = Name,
+            };
+            ListBoxListOfAccounts.Items.Add($"Название {name}");
+            string type = TextBoxType.Text;
         }
 
         private void ButtonRemoveAccount_Click(object sender, RoutedEventArgs e)
         {
-            string name = TextBoxName.Text;
-            foreach (var item in ListBoxListOfAccounts.Items)
-            {
-                if(item is AccountModel account && account.Name == name)
-                {
-                    _accountClient.RemoveAccount(name);
-                    ListBoxListOfAccounts.Items.Remove(item);
-                }
-            }
+        //    string name = TextBoxName.Text;
+        //    foreach (var item in ListBoxListOfAccounts.Items)
+        //    {
+        //        if(item is AccountModel account && account.Name == name)
+        //        {
+        //            _accountClient.RemoveAccount(name);
+        //            ListBoxListOfAccounts.Items.Remove(item);
+        //        }
+        //    }
 
         }
         private void TextBoxBalance_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -102,6 +117,10 @@ namespace FinanceControlSystem.UI
             
         }
 
-
+        private void ButtonSaveDB_Click(object sender, RoutedEventArgs e)
+        {
+            
+            DataStorage.WriteToJsonFile(_dataStorage);
+        }
     }
 }

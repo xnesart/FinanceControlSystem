@@ -14,6 +14,7 @@ namespace FinanceControlSystem.Logics
         {
             _accounts.Add(account);
         }
+
         public bool RemoveAccount(string accountName)
         {
             bool res = false;
@@ -25,6 +26,7 @@ namespace FinanceControlSystem.Logics
                     res = true;
                 }
             }
+
             return res;
         }
     }
