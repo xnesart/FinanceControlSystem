@@ -4,13 +4,13 @@ namespace FinanceControlSystem.Logics
 {
     public class AccountClient
     {
-        private List<AccountModel> _accounts;
+        private List<ClientsFinanceModel> _accounts;
         public AccountClient()
         {
-            _accounts = new List<AccountModel>();
+            _accounts = new List<ClientsFinanceModel>();
         }
 
-        public void AddAccount(AccountModel account)
+        public void AddAccount(ClientsFinanceModel account)
         {
             _accounts.Add(account);
         }

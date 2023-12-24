@@ -7,18 +7,19 @@ using System.Threading.Tasks;
 
 namespace FinanceControlSystem.Logics.Models
 {
-    public abstract class AbstractWalletModel
+    public  class ClientsFinanceModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
-        public WalletEnumType Type { get; set; }
+
+        public string Сurrency { get; set; }
 
         public decimal Balance { get; set; }
 
-        protected AbstractWalletModel(string name,decimal balance, WalletEnumType type) {
-            Name = name;
-            Type = type;
-            Balance = balance;
-        }
+        public string Desciption { get; set; }
+
+        public ClientsFinanceType Type { get; set; }
 
     }
 }

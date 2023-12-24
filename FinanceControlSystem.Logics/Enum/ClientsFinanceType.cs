@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace FinanceControlSystem.Logics.Enum
 {
-    public enum WalletEnumType
+    public enum ClientsFinanceType
     {
-        CreditCard,
-        DebitCard,
-        Cash,
-        Deposit
+        DebetCard = 1,
+        CreditCard = 2,
+        BankAccount = 3,
+        Cash = 4,
+        Debt = 5
     }
 }
