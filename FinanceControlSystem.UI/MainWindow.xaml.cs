@@ -3,7 +3,6 @@ using FinanceControlSystem.Logics.Models;
 using FinanseControleSystem.Logic.Models;
 using System.Windows;
 using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace FinanceControlSystem.UI
 {
@@ -18,8 +17,9 @@ namespace FinanceControlSystem.UI
         public MainWindow()
         {
             InitializeComponent();
-            DataStorage data = DataStorage.ReadFromJsonFile<DataStorage>("DataStorage.json");
-            if(data == null)
+            _dataStorage = new DataStorage();
+            _dataStorage = DataStorage.LoadFromJson();
+            if (_dataStorage == null)
             {
                 _dataStorage = new DataStorage();
             }
@@ -43,12 +43,27 @@ namespace FinanceControlSystem.UI
 
             _accountClient.AddAccount(accountModel);
             string name = TextBoxName.Text;
-            string type = TextBoxType.Text;
+            //string type = TextBoxType.Text;
             string balance = TextBoxBalance.Text;
-            ListBoxListOfAccounts.Items.Add($"Название {name}, тип {type}, баланс {balance}");
+            ListBoxListOfAccounts.Items.Add($"Название {name},  баланс {balance}");
+            TransactionCategoryModel category = new TransactionCategoryModel()
+            {
+                Name = name,
+            };
+            ClientsFinanceModel finance = new ClientsFinanceModel()
+            {
+                Name = name,
+            };
+            TransactionModel transaction = new TransactionModel()
+            {
+                Name = name,
+            };
             TextBoxName.Text = "";
-            TextBoxType.Text = "";
+            //TextBoxType.Text = "";
             TextBoxBalance.Text = "";
+            _dataStorage.AddTransaction(transaction);
+            _dataStorage.AddClientFinanceModel(finance);
+            _dataStorage.AddCategory(category);
         }
         private void ButtonAddWallet_Click(object sender, RoutedEventArgs e)
         {
@@ -59,27 +74,26 @@ namespace FinanceControlSystem.UI
             //string balance = TextBoxBalance.Text;
             //ListBoxListOfAccounts.Items.Add($"Название {name}, тип {type}, баланс {balance}");
             string name = TextBoxName.Text;
-            string balance = TextBoxBalance.Text;
 
             TransactionCategoryModel category = new TransactionCategoryModel()
             {
-                Name = Name,
+                Name = name,
             };
+            _dataStorage.AddCategory(category);
             ListBoxListOfAccounts.Items.Add($"Название {name}");
-            string type = TextBoxType.Text;
         }
 
         private void ButtonRemoveAccount_Click(object sender, RoutedEventArgs e)
         {
-        //    string name = TextBoxName.Text;
-        //    foreach (var item in ListBoxListOfAccounts.Items)
-        //    {
-        //        if(item is AccountModel account && account.Name == name)
-        //        {
-        //            _accountClient.RemoveAccount(name);
-        //            ListBoxListOfAccounts.Items.Remove(item);
-        //        }
-        //    }
+            //    string name = TextBoxName.Text;
+            //    foreach (var item in ListBoxListOfAccounts.Items)
+            //    {
+            //        if(item is AccountModel account && account.Name == name)
+            //        {
+            //            _accountClient.RemoveAccount(name);
+            //            ListBoxListOfAccounts.Items.Remove(item);
+            //        }
+            //    }
 
         }
         private void TextBoxBalance_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -114,13 +128,26 @@ namespace FinanceControlSystem.UI
             {
                 MyPopup.IsOpen = true;
             }
-            
+
         }
 
         private void ButtonSaveDB_Click(object sender, RoutedEventArgs e)
         {
-            
-            DataStorage.WriteToJsonFile(_dataStorage);
+
+            //_dataStorage.SaveToJson(_dataStorage);
+            DataStorage.WriteToXmlFile("vault.xml", _dataStorage);
+        }
+
+        private void ButtonLoadBD_Click(object sender, RoutedEventArgs e)
+        {
+            List<TransactionCategoryModel> categories = _dataStorage.GetAllCategoryModels();
+
+            ListBoxListOfAccounts.Items.Clear();
+
+            foreach (var category in categories)
+            {
+                ListBoxListOfAccounts.Items.Add(category.Name);
+            }
         }
     }
 }

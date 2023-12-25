@@ -6,14 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace FinanceControlSystem.Logics
 {
+    [Serializable]
     public class DataStorage
     {
         private Dictionary<int, TransactionCategoryModel> _transactionsCategories;
         private Dictionary<int, TransactionModel> _transactions;
         private Dictionary<int, ClientsFinanceModel> _clientsFinance;
+        
 
         private int _transactionsCategoriesLastId;
         private int _transactionsLastId;
@@ -95,14 +98,50 @@ namespace FinanceControlSystem.Logics
             return _clientsFinance.Values.ToList();
         }
 
-        public static void WriteToJsonFile<T>(T objectToWrite, bool append = false, string filePath = "DataStorage") where T : new()
+        public void SaveToJson(DataStorage data, string filePath = "DataStorageVault.json")
+        {
+            try
+            {
+                string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
+                File.WriteAllText(filePath, jsonData);
+                Console.WriteLine("Данные успешно сохранены в файл JSON.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при сохранении в JSON: {ex.Message}");
+            }
+        }
+        public static DataStorage LoadFromJson(string filePath = "DataStorageVault.json")
+        {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    string jsonData = File.ReadAllText(filePath);
+                    DataStorage loadedData = JsonConvert.DeserializeObject<DataStorage>(jsonData);
+                    Console.WriteLine("Данные успешно загружены из файла JSON.");
+                    return loadedData;
+                }
+                else
+                {
+                    Console.WriteLine("Файл JSON не найден.");
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при загрузке из JSON: {ex.Message}");
+                return null;
+            }
+        }
+        public static void WriteToXmlFile<T>(string filePath, T objectToWrite, bool append = false) where T : new()
         {
             TextWriter writer = null;
             try
             {
-                var contentsToWriteToFile = JsonConvert.SerializeObject(objectToWrite);
+                var serializer = new XmlSerializer(typeof(T));
                 writer = new StreamWriter(filePath, append);
-                writer.Write(contentsToWriteToFile);
+                serializer.Serialize(writer, objectToWrite);
             }
             finally
             {
@@ -110,14 +149,14 @@ namespace FinanceControlSystem.Logics
                     writer.Close();
             }
         }
-        public static T ReadFromJsonFile<T>(string filePath = "DataStorage") where T : new()
+        public static T ReadFromXmlFile<T>(string filePath) where T : new()
         {
             TextReader reader = null;
             try
             {
+                var serializer = new XmlSerializer(typeof(T));
                 reader = new StreamReader(filePath);
-                var fileContents = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<T>(fileContents);
+                return (T)serializer.Deserialize(reader);
             }
             finally
             {

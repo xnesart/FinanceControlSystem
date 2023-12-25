@@ -27,19 +27,19 @@
                             </StackPanel>
                         </Border>
                     </Popup>
-                    <Button x:Name="ButtonAddAccount" Content="Добавить кошелек" HorizontalAlignment="Left" Margin="17,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.464,2.122" Grid.ColumnSpan="2" Click="ButtonAddAccount_Click"/>
+                    <Button x:Name="ButtonAddAccount" Content="Добавить счёт" HorizontalAlignment="Left" Margin="17,173,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.464,2.122" Grid.ColumnSpan="2" Click="ButtonAddAccount_Click"/>
                     <ListBox x:Name="ListBoxListOfAccounts" Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=5}"/>
                     <TextBox x:Name="TextBoxName" HorizontalAlignment="Left" Margin="79,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
-                    <TextBox x:Name="TextBoxType" HorizontalAlignment="Left" Margin="79,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
                     <TextBox x:Name="TextBoxBalance" HorizontalAlignment="Left" Margin="79,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1" PreviewTextInput="TextBoxBalance_PreviewTextInput" PreviewKeyDown="TextBoxBalance_PreviewKeyDown"/>
                     <Label x:Name="LabelName" Content="Название" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <Label x:Name="LabelType" Content="Тип кошелька" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <Label x:Name="LabelBalance" Content="Деньги" HorizontalAlignment="Left" Margin="12,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.434,-1.579" Grid.ColumnSpan="2"/>
-                    <Button x:Name="ShowPopup" Grid.Column="1" Content="Button" HorizontalAlignment="Left" Margin="139,173,0,0" VerticalAlignment="Top" Click="ClosePopup_Click"/>
-                    <Button x:Name="ButtonRemoveAccount" Grid.Column="1" Content="Удалить аккаунт" HorizontalAlignment="Left" Margin="210,172,0,0" VerticalAlignment="Top" Click="ButtonRemoveAccount_Click"/>
+                    <Button x:Name="ShowPopup" Grid.Column="1" Content="Попап" HorizontalAlignment="Left" Margin="139,173,0,0" VerticalAlignment="Top" Click="ClosePopup_Click"/>
+                    <Button x:Name="ButtonRemoveAccount" Grid.Column="1" Content="Удалить счёт" HorizontalAlignment="Left" Margin="210,172,0,0" VerticalAlignment="Top" Click="ButtonRemoveAccount_Click"/>
                     <Button x:Name="ButtonAddWallet" Grid.Column="1" Content="Добавить новый кошелек" HorizontalAlignment="Left" Margin="0,63,0,0" Grid.Row="1" VerticalAlignment="Top" Click="ButtonAddWallet_Click"/>
                     <Button x:Name="ButtonSaveDB" Grid.Column="1" Content="Сохранить БД" HorizontalAlignment="Left" Margin="210,63,0,0" Grid.Row="1" VerticalAlignment="Top" Click="ButtonSaveDB_Click"/>
                     <Button x:Name="ButtonLoadBD" Grid.Column="1" Content="Загрузить БД" HorizontalAlignment="Left" Margin="210,102,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="ComboBoxClientFinanceTypeChoise" Grid.Column="1" HorizontalAlignment="Left" Margin="79,37,0,0" VerticalAlignment="Top" Width="120"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Планирование">
