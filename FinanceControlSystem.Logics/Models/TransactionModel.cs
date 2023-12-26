@@ -1,6 +1,11 @@
 ﻿using FinanceControlSystem.Logics.Enum;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FinanseControleSystem.Logic.Models
+namespace FinanceControlSystem.Logics.Models
 {
     public class TransactionModel
     {
@@ -12,7 +17,7 @@ namespace FinanseControleSystem.Logic.Models
 
         public DateTime Date { get; set; }
 
-        public int ClientsFinanseId { get; set; }
+        public int ClientsFinanceId { get; set; }
 
         public int CategoryId { get; set; }
 
