@@ -9,7 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Components\ButtonRefresh3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FinanceControlSystem.Logics\FinanceControlSystem.Logics.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Components\ButtonRefresh3.png" />
   </ItemGroup>
 
 </Project>

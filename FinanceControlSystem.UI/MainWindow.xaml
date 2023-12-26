@@ -9,7 +9,7 @@
         Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <TabControl>
-            <TabItem x:Name="TabItemDashboard" Header="Dashboard" >
+            <TabItem x:Name="TabItemDashboard" Header="Dashboard" Loaded="TabItemDashboard_Loaded" >
                 <components:DashboardControl x:Name="DashboardTab" Background="Black" ></components:DashboardControl>
             </TabItem>
             <TabItem Header="Главная">
@@ -21,6 +21,11 @@
                     </LinearGradientBrush>
                 </TabItem.Background>
                 
+            </TabItem>
+            <TabItem x:Name="TabItemOutcome" Header="Расходы">
+                <!--<components:OutcomeControl></components:OutcomeControl>-->
+                <!--<components:OutcomeControl x:Name="MainTab"></components:OutcomeControl>-->
+                <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="Планирование">
                 <Grid Background="#FFE5E5E5"/>

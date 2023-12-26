@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinanceControlSystem.Logics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,30 @@ namespace FinanceControlSystem.UI.Components
     /// </summary>
     public partial class DashboardControl : UserControl
     {
+        private DataStorage _dataStorage;
         public DashboardControl()
         {
             InitializeComponent();
+            _dataStorage = new DataStorage();
+            _dataStorage = DataStorage.LoadFromJson();
+            if (_dataStorage == null)
+            {
+                _dataStorage = new DataStorage();
+            }
+            ShowAmountOfRub();
+        }
+
+
+        private void ShowAmountOfRub()
+        {
+
+            LabelDashboardCountOfRubValue.Content = _dataStorage.CalculateRubFromClientFinanceModels();
+        }
+
+        private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            _dataStorage = DataStorage.LoadFromJson();
+            ShowAmountOfRub();
         }
     }
 }

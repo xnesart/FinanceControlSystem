@@ -26,5 +26,10 @@ namespace FinanceControlSystem.UI
             _accountClient = new AccountClient();
             
         }
+
+        private void TabItemDashboard_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

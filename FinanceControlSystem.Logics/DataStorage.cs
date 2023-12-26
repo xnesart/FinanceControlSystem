@@ -1,4 +1,5 @@
-﻿using FinanceControlSystem.Logics.Models;
+﻿using FinanceControlSystem.Logics.Enum;
+using FinanceControlSystem.Logics.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -110,7 +111,7 @@ namespace FinanceControlSystem.Logics
             List<ClientsFinanceModel> models = GetAllClientModels();
             foreach (var model in models)
             {
-                if(model.Сurrency == Enum.CurrencyType.rub)
+                if(model.Сurrency == Enum.CurrencyType.rub && model.Type != ClientsFinanceType.Debt && model.Type != ClientsFinanceType.CreditCard)
                 {
                     result += model.Balance;
                 }
