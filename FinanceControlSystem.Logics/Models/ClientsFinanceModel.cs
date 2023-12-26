@@ -13,7 +13,7 @@ namespace FinanceControlSystem.Logics.Models
 
         public string Name { get; set; }
 
-        public string Сurrency { get; set; }
+        public CurrencyType Сurrency { get; set; }
 
         public decimal Balance { get; set; }
 

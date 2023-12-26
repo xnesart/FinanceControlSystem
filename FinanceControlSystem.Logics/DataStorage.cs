@@ -103,6 +103,21 @@ namespace FinanceControlSystem.Logics
             return _clientsFinance.Values.ToList();
         }
 
+        public decimal CalculateRubFromClientFinanceModels()
+        {
+            decimal result = 0;
+
+            List<ClientsFinanceModel> models = GetAllClientModels();
+            foreach (var model in models)
+            {
+                if(model.Сurrency == Enum.CurrencyType.rub)
+                {
+                    result += model.Balance;
+                }
+            }
+            return result;
+        }
+
         public void SaveToJson(DataStorage data, string filePath = "DataStorageVault.json")
         {
             try
