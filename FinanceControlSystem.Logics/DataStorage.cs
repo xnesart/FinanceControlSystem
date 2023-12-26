@@ -13,9 +13,9 @@ namespace FinanceControlSystem.Logics
     [Serializable]
     public class DataStorage
     {
-        private Dictionary<int, TransactionCategoryModel> _transactionsCategories;
-        private Dictionary<int, TransactionModel> _transactions;
-        private Dictionary<int, ClientsFinanceModel> _clientsFinance;
+        public Dictionary<int, TransactionCategoryModel> _transactionsCategories;
+        public Dictionary<int, TransactionModel> _transactions;
+        public Dictionary<int, ClientsFinanceModel> _clientsFinance;
         
 
         private int _transactionsCategoriesLastId;

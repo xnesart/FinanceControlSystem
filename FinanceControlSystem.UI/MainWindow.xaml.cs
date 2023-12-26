@@ -134,8 +134,8 @@ namespace FinanceControlSystem.UI
         private void ButtonSaveDB_Click(object sender, RoutedEventArgs e)
         {
 
-            //_dataStorage.SaveToJson(_dataStorage);
-            DataStorage.WriteToXmlFile("vault.xml", _dataStorage);
+            _dataStorage.SaveToJson(_dataStorage);
+            //DataStorage.WriteToXmlFile("vault.xml", _dataStorage);
         }
 
         private void ButtonLoadBD_Click(object sender, RoutedEventArgs e)
