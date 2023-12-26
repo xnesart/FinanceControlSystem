@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinanceControlSystem.UI"
         xmlns:components="clr-namespace:FinanceControlSystem.UI.Components"
+
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
@@ -23,9 +25,7 @@
                 
             </TabItem>
             <TabItem x:Name="TabItemOutcome" Header="Расходы">
-                <!--<components:OutcomeControl></components:OutcomeControl>-->
-                <!--<components:OutcomeControl x:Name="MainTab"></components:OutcomeControl>-->
-                <Grid Background="#FFE5E5E5"/>
+                <components:OutcomeControl x:Name="Расходы"></components:OutcomeControl>
             </TabItem>
             <TabItem Header="Планирование">
                 <Grid Background="#FFE5E5E5"/>
