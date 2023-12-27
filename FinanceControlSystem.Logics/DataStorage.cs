@@ -3,6 +3,7 @@ using FinanceControlSystem.Logics.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -60,6 +61,8 @@ namespace FinanceControlSystem.Logics
         {
             return _transactionsCategories.Values.ToList();
         }
+
+
 
         public void AddTransaction(TransactionModel transaction)
         {
