@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FinanceControlSystem.Logics;
+using FinanceControlSystem.Logics.Enum;
+using FinanceControlSystem.Logics.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,48 @@ namespace FinanceControlSystem.UI.Components
     /// </summary>
     public partial class OutcomeControl : UserControl
     {
+        private DataStorage _dataStorage;
         public OutcomeControl()
         {
             InitializeComponent();
+            _dataStorage = new DataStorage();
+            _dataStorage = DataStorage.LoadFromJson();
+            if (_dataStorage == null)
+            {
+                _dataStorage = new DataStorage();
+            }
+            FillComboBoxAccountOfPayments();
+        }
+        private void FillComboBoxAccountOfPayments()
+        {
+           
+            //ComboBoxPaymentType.Items.Clear();
+            List<string> financeTypesNames = GetListOfFinanceTypesForComboBoxAccountOfPayments();
+            
+            foreach(var financeTypeName in financeTypesNames)
+            {
+                //ComboBoxPaymentType.DataContext = financeType;
+
+                ComboBoxPaymentType.Items.Add(financeTypeName);
+            }
+        }
+
+        private List<string> GetListOfFinanceTypesForComboBoxAccountOfPayments()
+        {
+            List<string> financeTypesNames = new List<string>();
+            List<ClientsFinanceModel> clients = _dataStorage.GetAllClientModels();
+
+            foreach (ClientsFinanceModel client in clients)
+            {
+                financeTypesNames.Add(client.Name);
+            }
+
+            return financeTypesNames;
+        }
+
+        private void ComboBoxPaymentType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
