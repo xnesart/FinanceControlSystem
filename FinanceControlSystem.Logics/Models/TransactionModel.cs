@@ -14,13 +14,12 @@ namespace FinanceControlSystem.Logics.Models
         public string Name { get; set; }
 
         public decimal Summ { get; set; }
-        public ClientsFinanceType Account { get; set; }
 
         public DateTime Date { get; set; }
 
-        public int ClientsFinanceId { get; set; }
+        public string ClientsFinanceType { get; set; }
 
-        public int CategoryId { get; set; }
+        public string PaymentsCategoryType { get; set; }
 
         public TransactionType Type { get; set; }
 

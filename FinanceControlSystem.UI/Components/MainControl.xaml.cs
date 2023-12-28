@@ -30,6 +30,7 @@ namespace FinanceControlSystem.UI.Components
         private void ButtonAddAccount_Click(object sender, RoutedEventArgs e)
         {
             string name = TextBoxNameOfAccount.Text;
+            string description = TextBoxDescription.Text;
 
             decimal balance;
 
@@ -48,6 +49,7 @@ namespace FinanceControlSystem.UI.Components
                 Сurrency = currency,
                 Balance = balance,
                 Type = type,
+                Desciption = description
             };
             _dataStorage.AddClientFinanceModel(model);
             _dataStorage.SaveToJson(_dataStorage);
@@ -102,23 +104,23 @@ namespace FinanceControlSystem.UI.Components
         private ClientsFinanceType GetClientFinanceTypeFromComboBox()
         {
             ClientsFinanceType type = ClientsFinanceType.DebetCard;
-            if (ComboBoxCategoryOfAccount.SelectedItem is ClientsFinanceType.DebetCard)
+            if (ComboBoxClientsFinanceType.SelectedItem is ClientsFinanceType.DebetCard)
             {
                 type = ClientsFinanceType.DebetCard;
             }
-            if (ComboBoxCategoryOfAccount.SelectedItem is ClientsFinanceType.CreditCard)
+            if (ComboBoxClientsFinanceType.SelectedItem is ClientsFinanceType.CreditCard)
             {
                 type = ClientsFinanceType.CreditCard;
             }
-            if (ComboBoxCategoryOfAccount.SelectedItem is ClientsFinanceType.BankAccount)
+            if (ComboBoxClientsFinanceType.SelectedItem is ClientsFinanceType.BankAccount)
             {
                 type = ClientsFinanceType.BankAccount;
             }
-            if (ComboBoxCategoryOfAccount.SelectedItem is ClientsFinanceType.Cash)
+            if (ComboBoxClientsFinanceType.SelectedItem is ClientsFinanceType.Cash)
             {
                 type = ClientsFinanceType.Cash;
             }
-            if (ComboBoxCategoryOfAccount.SelectedItem is ClientsFinanceType.Debt)
+            if (ComboBoxClientsFinanceType.SelectedItem is ClientsFinanceType.Debt)
             {
                 type = ClientsFinanceType.Debt;
             }
@@ -154,7 +156,7 @@ namespace FinanceControlSystem.UI.Components
             }
         }
 
-        private void ComboBoxCategoryOfAccount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBoxClientsFinanceType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

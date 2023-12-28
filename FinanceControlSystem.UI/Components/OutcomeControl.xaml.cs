@@ -1,6 +1,7 @@
 ﻿using FinanceControlSystem.Logics;
 using FinanceControlSystem.Logics.Enum;
 using FinanceControlSystem.Logics.Models;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,52 +23,87 @@ namespace FinanceControlSystem.UI.Components
                 _dataStorage = new DataStorage();
             }
             FillComboBoxAccountOfPayments();
+            LoadListView();
         }
         private void FillComboBoxAccountOfPayments()
         {
 
-            ComboBoxPaymentType.Items.Clear();
+            ComboBoxClientsFinanceType.Items.Clear();
 
             List<string> financeTypesNames = GetListOfFinanceTypesForComboBoxAccountOfPayments();
-            ComboBoxPaymentType.ItemsSource = financeTypesNames;
+            ComboBoxClientsFinanceType.ItemsSource = financeTypesNames;
         }
 
 
 
         private void ButtonAddOutcome_Click(object sender, RoutedEventArgs e)
         {
-            string outcomeCategory = "";
-            string accountOfOutcome = "";
-            decimal outcomeValue = decimal.Parse(TextBoxOutcomeValue.Text);
-            if (ComboBoxCategoryType.SelectedItem is null || ComboBoxPaymentType.SelectedItem is null)
+            string sPaymentsCategoryType = "";
+            string sClientsFinanceType = "";
+            decimal dOutcomeSumm = decimal.Parse(TextBoxOutcomeSumm.Text);
+            if (ComboBoxPaymentsCategoryType.SelectedItem is null || ComboBoxClientsFinanceType.SelectedItem is null)
             {
-                ComboBoxCategoryType.SelectedIndex = 1;
-                ComboBoxPaymentType.SelectedIndex = 1;
+                ComboBoxPaymentsCategoryType.SelectedIndex = 1;
+                ComboBoxClientsFinanceType.SelectedIndex = 1;
             }
             else
             {
-                outcomeCategory = ComboBoxCategoryType.SelectedItem.ToString();
-                accountOfOutcome = ComboBoxPaymentType.SelectedItem.ToString();
+                sPaymentsCategoryType = ComboBoxPaymentsCategoryType.SelectedItem.ToString();
+                sClientsFinanceType = ComboBoxClientsFinanceType.SelectedItem.ToString();
             }
+            string accountName = ComboBoxClientsFinanceType.SelectedItem.ToString();
+            int id = GetAccountIdForTransaction(accountName);
+            string descriptionCategory = TextBoxOutcomeName.Text;
 
-            string descriptionCategory = TextBoxOutcomeDesciption.Text;
-            ListViewOutcome.Items.Add(new ItemForAddIntoListView { Outcome = outcomeValue.ToString(), Category = outcomeCategory, Account = accountOfOutcome, Description = descriptionCategory });
+            DateTime currentDate = DateTime.Now;
+            string formattedDate = currentDate.ToString("dd.MM.yyyy HH:mm");
+
+            ListViewOutcome.Items.Add(new FinancialMovementsItem { Outcome = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = DateTime.ParseExact(formattedDate, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture) });
+
+
+
             TransactionModel transaction = new TransactionModel()
             {
                 Name = descriptionCategory,
                 Type = TransactionType.Outcome,
-               // Account = (ClientsFinanceType)ComboBoxPaymentType.SelectedItem,
-                Summ = outcomeValue,
-                
-            };
+                ClientsFinanceType = sClientsFinanceType,
+                PaymentsCategoryType = sPaymentsCategoryType,
+                Summ = dOutcomeSumm,
+                IsApproved = true,
+                Date = DateTime.ParseExact(formattedDate, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture),
+        };
 
-            //Column1 data1 = new Column1 { Column1 = $"{outcomeValue}", Column2 = $"{outcomeCategory}" };
-            //OutcomeControl data2 = new OutcomeControl { Column2 = $"{outcomeValue}", Column2 = $"{outcomeCategory}" };
+            _dataStorage.AddTransaction(transaction);
+            _dataStorage.SaveToJson(_dataStorage);
+            //Column1 data1 = new Column1 { Column1 = $"{dOutcomeSumm}", Column2 = $"{sPaymentsCategoryType}" };
+            //OutcomeControl data2 = new OutcomeControl { Column2 = $"{dOutcomeSumm}", Column2 = $"{sPaymentsCategoryType}" };
             //ListViewOutcome.Items.Clear();
             //ListViewOutcome.Items.Add(data1);
 
         }
-        private void ComboBoxPaymentType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void LoadListView()
+        {
+            string sPaymentsCategoryType = "";
+            string sClientsFinanceType = "";
+            //decimal dOutcomeSumm = decimal.Parse(TextBoxdOutcomeSumm.Text);
+            //string descriptionCategory = TextBoxOutcomeDesciption.Text;
+
+            //TransactionModel transaction = new TransactionModel()
+            //{
+            //    Name = descriptionCategory,
+            //    Type = TransactionType.Outcome,
+            //    ClientsFinanceId = id,
+            //    Summ = dOutcomeSumm,
+            //};
+
+            List<TransactionModel> transactionsList = _dataStorage.GetAllTransactionModels();
+            //foreach (TransactionModel transaction in transactionsList)
+            //{
+            //    ListViewOutcome.Items.Add(new FinancialMovementsItem { Outcome = transaction.Summ.ToString(), Category = transaction.CategoryId.ToString(), Account = sClientsFinanceType, Description = "" });
+            //}
+        }
+        private void ComboBoxClientsFinanceType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
@@ -83,17 +119,26 @@ namespace FinanceControlSystem.UI.Components
 
             return financeTypesNames;
         }
+        private int GetAccountIdForTransaction(string transactionName)
+        {
+            int accountId = -1;
+            List<ClientsFinanceModel> list = _dataStorage.GetAllClientModels();
+            foreach (ClientsFinanceModel client in list)
+            {
+                if (client.Name == transactionName)
+                {
+                    accountId = client.Id;
+                    break;
+                }
+            }
+
+            return accountId;
+        }
 
         private void ButtonAddOutcome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
 
         }
     }
-    public class ItemForAddIntoListView
-    {
-        public string Outcome { get; set; }
-        public string Category { get; set; }
-        public string Account { get; set; }
-        public string Description { get; set; }
-    }
+
 }

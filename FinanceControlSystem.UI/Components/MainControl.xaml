@@ -30,7 +30,7 @@
         <Label x:Name="LabelCurrency" Content="Валюта" HorizontalAlignment="Left" Margin="29,89,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" RenderTransformOrigin="0.321,-5.968"/>
         <Label x:Name="LabelDescription" Content="Описание счёта" HorizontalAlignment="Left" Margin="25,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.339,-0.064" FontFamily="Comic Sans MS"/>
         <TextBox x:Name="TextBoxDescription" HorizontalAlignment="Center" Margin="0,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="ComboBoxCategoryOfAccount" HorizontalAlignment="Center" Margin="0,58,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:ClientsFinanceType}}}" SelectionChanged="ComboBoxCategoryOfAccount_SelectionChanged"/>
+        <ComboBox x:Name="ComboBoxClientsFinanceType" HorizontalAlignment="Center" Margin="0,58,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:ClientsFinanceType}}}"/>
         <ComboBox x:Name="ComboBoxCurrencyType" HorizontalAlignment="Center" Margin="0,89,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type logic:CurrencyType}}}" SelectionChanged="ComboBoxCurrencyType_SelectionChanged"/>
     </Grid>
 </UserControl>
