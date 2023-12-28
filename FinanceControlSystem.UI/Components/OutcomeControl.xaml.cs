@@ -58,7 +58,7 @@ namespace FinanceControlSystem.UI.Components
             DateTime currentDate = DateTime.Now;
             string formattedDate = currentDate.ToString("dd.MM.yyyy HH:mm");
 
-            ListViewOutcome.Items.Add(new FinancialMovementsItem { Outcome = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = DateTime.ParseExact(formattedDate, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture) });
+            ListViewOutcome.Items.Add(new FinancialMovementsItem { Outcome = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = formattedDate });
 
 
 
@@ -71,37 +71,26 @@ namespace FinanceControlSystem.UI.Components
                 Summ = dOutcomeSumm,
                 IsApproved = true,
                 Date = DateTime.ParseExact(formattedDate, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture),
-        };
+            };
 
             _dataStorage.AddTransaction(transaction);
             _dataStorage.SaveToJson(_dataStorage);
-            //Column1 data1 = new Column1 { Column1 = $"{dOutcomeSumm}", Column2 = $"{sPaymentsCategoryType}" };
-            //OutcomeControl data2 = new OutcomeControl { Column2 = $"{dOutcomeSumm}", Column2 = $"{sPaymentsCategoryType}" };
-            //ListViewOutcome.Items.Clear();
-            //ListViewOutcome.Items.Add(data1);
-
         }
 
         private void LoadListView()
         {
-            string sPaymentsCategoryType = "";
-            string sClientsFinanceType = "";
-            //decimal dOutcomeSumm = decimal.Parse(TextBoxdOutcomeSumm.Text);
-            //string descriptionCategory = TextBoxOutcomeDesciption.Text;
 
-            //TransactionModel transaction = new TransactionModel()
-            //{
-            //    Name = descriptionCategory,
-            //    Type = TransactionType.Outcome,
-            //    ClientsFinanceId = id,
-            //    Summ = dOutcomeSumm,
-            //};
 
             List<TransactionModel> transactionsList = _dataStorage.GetAllTransactionModels();
-            //foreach (TransactionModel transaction in transactionsList)
-            //{
-            //    ListViewOutcome.Items.Add(new FinancialMovementsItem { Outcome = transaction.Summ.ToString(), Category = transaction.CategoryId.ToString(), Account = sClientsFinanceType, Description = "" });
-            //}
+            foreach (TransactionModel transaction in transactionsList)
+            {
+                string dOutcomeSumm = transaction.Summ.ToString();
+                string sPaymentsCategoryType = transaction.PaymentsCategoryType.ToString();
+                string sClientsFinanceType = transaction.ClientsFinanceType.ToString();
+                string descriptionCategory = transaction.Name.ToString();
+                string formattedDate = transaction.Date.ToString();
+                ListViewOutcome.Items.Add(new FinancialMovementsItem { Outcome = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = formattedDate });
+            }
         }
         private void ComboBoxClientsFinanceType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

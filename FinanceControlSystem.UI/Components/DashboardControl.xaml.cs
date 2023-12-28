@@ -32,6 +32,7 @@ namespace FinanceControlSystem.UI.Components
                 _dataStorage = new DataStorage();
             }
             ShowAmountOfRub();
+            ShowOutcome();
         }
 
 
@@ -40,11 +41,17 @@ namespace FinanceControlSystem.UI.Components
 
             LabelDashboardCountOfRubValue.Content = _dataStorage.CalculateRubFromClientFinanceModels();
         }
+        private void ShowOutcome()
+        {
+
+            LabelDashboardOutcomeValue.Content = _dataStorage.CalculateOutcome();
+        }
 
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
             _dataStorage = DataStorage.LoadFromJson();
             ShowAmountOfRub();
+            ShowOutcome();
         }
     }
 }

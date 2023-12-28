@@ -1,14 +1,6 @@
 ﻿using FinanceControlSystem.Logics.Enum;
 using FinanceControlSystem.Logics.Models;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace FinanceControlSystem.Logics
 {
@@ -71,7 +63,8 @@ namespace FinanceControlSystem.Logics
             _transactionsLastId++;
         }
 
-        public void RemoveTransactionByID(int id) {
+        public void RemoveTransactionByID(int id)
+        {
             _transactions.Remove(id);
         }
 
@@ -80,7 +73,7 @@ namespace FinanceControlSystem.Logics
             return _transactions[id];
         }
 
-        public List<TransactionModel> GetAllTransactionModels ()
+        public List<TransactionModel> GetAllTransactionModels()
         {
             return _transactions.Values.ToList();
         }
@@ -97,7 +90,7 @@ namespace FinanceControlSystem.Logics
             _clientsFinance.Remove(id);
         }
 
-        public ClientsFinanceModel GetClientModelByID (int id)
+        public ClientsFinanceModel GetClientModelByID(int id)
         {
             return _clientsFinance[id];
         }
@@ -114,11 +107,23 @@ namespace FinanceControlSystem.Logics
             List<ClientsFinanceModel> models = GetAllClientModels();
             foreach (var model in models)
             {
-                if(model.Сurrency == Enum.CurrencyType.rub && model.Type != ClientsFinanceType.Debt && model.Type != ClientsFinanceType.CreditCard)
+                if (model.Сurrency == Enum.CurrencyType.rub && model.Type != ClientsFinanceType.Debt && model.Type != ClientsFinanceType.CreditCard)
                 {
                     result += model.Balance;
                 }
             }
+            return result;
+        }
+
+        public decimal CalculateOutcome()
+        {
+            decimal result = 0;
+            List<TransactionModel> transactions = GetAllTransactionModels();
+            foreach (var transaction in transactions)
+            {
+                result += transaction.Summ;
+            }
+
             return result;
         }
 
