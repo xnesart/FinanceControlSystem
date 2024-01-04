@@ -149,6 +149,23 @@ namespace FinanceControlSystem.Logics
             return _clientsFinance.Values.ToList();
         }
 
+        public decimal GetBalanceFromDebetAndCashModels()
+        {
+            decimal balance = 0;
+            List<ClientsFinanceModel> models = GetAllClientModels();
+
+            foreach (var model in models)
+            {
+                if (model.Сurrency == Enum.CurrencyType.rub && model.Type != ClientsFinanceType.Debt && model.Type != ClientsFinanceType.CreditCard)
+                {
+                    balance += model.Balance;
+                }
+            }
+
+            return balance;
+        }
+
+        //не работает!
         public decimal CalculateRubFromClientFinanceModels()
         {
             decimal result = 0;

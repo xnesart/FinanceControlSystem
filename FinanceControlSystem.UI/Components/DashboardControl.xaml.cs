@@ -40,7 +40,7 @@ namespace FinanceControlSystem.UI.Components
         {
             if(_dataStorage != null)
             {
-                LabelDashboardCountOfRubValue.Content = _dataStorage.CalculateRubFromClientFinanceModels();
+                LabelDashboardCountOfRubValue.Content = _dataStorage.GetBalanceFromDebetAndCashModels();
             }
             
         }

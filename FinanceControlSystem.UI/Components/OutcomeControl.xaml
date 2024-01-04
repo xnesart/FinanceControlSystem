@@ -26,8 +26,8 @@
         <ComboBox x:Name="ComboBoxPaymentsCategoryType" Grid.Column="1" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:PaymentsCategoryType}}}" SelectedIndex="0"/>
         <Label x:Name="LabelOutcomeSum" Content="Сколько потратили?" HorizontalAlignment="Left" Margin="11,14,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
         <TextBox x:Name="TextBoxOutcomeSumm" Grid.Column="1" HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="ComboBoxClientsFinanceType" Grid.Column="1" HorizontalAlignment="Left" Margin="10,56,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:ClientsFinanceType}}}" SelectedIndex="0"/>
-        <Label x:Name="LabelAccountOfPayments" Content="Счёт списания" HorizontalAlignment="Left" Margin="11,48,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
+        <ComboBox x:Name="ComboBoxClientsFinanceType" Grid.Column="1" HorizontalAlignment="Left" Margin="10,56,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding }"/>
+            <Label x:Name="LabelAccountOfPayments" Content="Счёт списания" HorizontalAlignment="Left" Margin="11,48,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
         <ListView x:Name="ListViewOutcome" Grid.Column="2" Grid.RowSpan="4" >
             <ListView.View>
                 <GridView>

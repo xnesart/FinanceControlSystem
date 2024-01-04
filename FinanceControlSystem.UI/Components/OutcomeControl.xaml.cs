@@ -28,7 +28,17 @@ namespace FinanceControlSystem.UI.Components
             if (File.Exists("DataStorageVault.json"))
             {
                 LoadListView();
+                FillComboBoxAccountOfPayments();
             }
+        }
+
+        private void FillComboBoxAccountOfPayments()
+        {
+
+            //ComboBoxClientsFinanceType.Items.Clear();
+
+            List<string> financeTypesNames = GetListOfFinanceTypesForComboBoxAccountOfPayments();
+            ComboBoxClientsFinanceType.ItemsSource = financeTypesNames;
         }
 
         private void ButtonAddOutcome_Click(object sender, RoutedEventArgs e)
@@ -145,10 +155,10 @@ namespace FinanceControlSystem.UI.Components
         }
         public void GetUpdate()
         {
-
             ListViewOutcome.Items.Clear();
             _dataStorage = DataStorage.LoadFromJson();
             LoadListView();
+            FillComboBoxAccountOfPayments();
         }
     }
 }
