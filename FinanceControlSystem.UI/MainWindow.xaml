@@ -10,8 +10,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <TabControl>
-            <TabItem x:Name="TabItemDashboard" Header="Dashboard" Loaded="TabItemDashboard_Loaded" >
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
+            <TabItem x:Name="TabItemDashboard" Header="Dashboard" >
                 <components:DashboardControl x:Name="DashboardTab" Background="Black" ></components:DashboardControl>
             </TabItem>
             <TabItem Header="Главная">

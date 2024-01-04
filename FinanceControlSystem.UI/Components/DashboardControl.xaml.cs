@@ -53,5 +53,11 @@ namespace FinanceControlSystem.UI.Components
             ShowAmountOfRub();
             ShowOutcome();
         }
+        public  void GetUpdate()
+        {
+            _dataStorage = DataStorage.LoadFromJson();
+            ShowAmountOfRub();
+            ShowOutcome();
+        }
     }
 }

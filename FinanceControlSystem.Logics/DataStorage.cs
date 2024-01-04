@@ -31,7 +31,7 @@ namespace FinanceControlSystem.Logics
             _transactionsLastId = 1;
             _clientsFinanceLastId = 1;
         }
-
+        #region TransactionCategories
         public void AddCategory(TransactionCategoryModel category)
         {
             category.Id = _transactionsCategoriesLastId;
@@ -53,9 +53,9 @@ namespace FinanceControlSystem.Logics
         {
             return _transactionsCategories.Values.ToList();
         }
+        #endregion
 
-
-
+        #region Transactions
         public void AddTransaction(TransactionModel transaction)
         {
             transaction.Id = _transactionsLastId;
@@ -78,6 +78,26 @@ namespace FinanceControlSystem.Logics
             return _transactions.Values.ToList();
         }
 
+        public int GetTransactionLastID()
+        {
+            int result = _transactionsLastId;
+            return result;
+        }
+
+        public decimal CalculateOutcome()
+        {
+            decimal result = 0;
+            List<TransactionModel> transactions = GetAllTransactionModels();
+            foreach (var transaction in transactions)
+            {
+                result += transaction.Summ;
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region ClientFinanceModel
         public void AddClientFinanceModel(ClientsFinanceModel model)
         {
             model.Id = _clientsFinanceLastId;
@@ -114,19 +134,9 @@ namespace FinanceControlSystem.Logics
             }
             return result;
         }
+        #endregion
 
-        public decimal CalculateOutcome()
-        {
-            decimal result = 0;
-            List<TransactionModel> transactions = GetAllTransactionModels();
-            foreach (var transaction in transactions)
-            {
-                result += transaction.Summ;
-            }
-
-            return result;
-        }
-
+        #region SaveAndLoad
         public void SaveToJson(DataStorage data, string filePath = "DataStorageVault.json")
         {
             try
@@ -163,5 +173,6 @@ namespace FinanceControlSystem.Logics
                 return null;
             }
         }
+        #endregion
     }
 }

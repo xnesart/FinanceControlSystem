@@ -9,6 +9,7 @@ namespace FinanceControlSystem.UI.Components
 {
     public class FinancialMovementsItem
     {
+        public int ID { get; set; }
         public string Outcome { get; set; }
         public string Category { get; set; }
         public string Account { get; set; }

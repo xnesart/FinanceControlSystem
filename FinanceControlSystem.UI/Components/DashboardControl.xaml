@@ -33,10 +33,5 @@
         <Rectangle x:Name="RectangleCountOfRub" HorizontalAlignment="Center" Height="82" Grid.Row="1" RadiusX="10" RadiusY="10" Stroke="Black" VerticalAlignment="Center" Width="251" Fill="#FFA9DC97" RenderTransformOrigin="0.5,0.5"/>
         <Label x:Name="LabelDashboardCountOfRubTitle" Content="Всего денег на счетах в руб:" HorizontalAlignment="Center" Margin="0,24,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.104,0.48" FontFamily="Comic Sans MS" FontSize="16"/>
         <Label x:Name="LabelDashboardCountOfRubValue" Content="0 руб" HorizontalAlignment="Left" Margin="20,56,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-0.517,0.332"/>
-        <Button x:Name="ButtonRefresh" Grid.Column="1" Margin="20,0,157,0" Grid.Row="1" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" Height="59" Click="ButtonRefresh_Click">
-            <Button.Content>
-                <Image x:Name="ImageRefresh" Grid.Column="1" HorizontalAlignment="Left" Height="59" VerticalAlignment="Center" Width="43" Source="/Components/ButtonRefresh3.png" Grid.Row="1" Stretch="Fill"/>
-            </Button.Content>
-        </Button>
     </Grid>
 </UserControl>

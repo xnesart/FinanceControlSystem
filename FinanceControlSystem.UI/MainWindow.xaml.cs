@@ -1,6 +1,7 @@
 ﻿
 using FinanceControlSystem.Logics;
 using FinanceControlSystem.Logics.Models;
+using FinanceControlSystem.UI.Components;
 using System.Windows;
 using System.Windows.Input;
 
@@ -27,9 +28,11 @@ namespace FinanceControlSystem.UI
             
         }
 
-        private void TabItemDashboard_Loaded(object sender, RoutedEventArgs e)
+        private void TabControl_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            _dataStorage = DataStorage.LoadFromJson();
 
+            DashboardTab.GetUpdate();
         }
     }
 }
