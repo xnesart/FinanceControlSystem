@@ -38,13 +38,27 @@ namespace FinanceControlSystem.UI.Components
 
         private void ShowAmountOfRub()
         {
-
-            LabelDashboardCountOfRubValue.Content = _dataStorage.CalculateRubFromClientFinanceModels();
+            if(_dataStorage != null)
+            {
+                LabelDashboardCountOfRubValue.Content = _dataStorage.CalculateRubFromClientFinanceModels();
+            }
+            
         }
         private void ShowOutcome()
         {
+            if (_dataStorage != null)
+            {
+                LabelDashboardOutcomeValue.Content = _dataStorage.CalculateOutcome();
 
-            LabelDashboardOutcomeValue.Content = _dataStorage.CalculateOutcome();
+            }
+        }
+
+        private void ShowIncome()
+        {
+            if (_dataStorage != null)
+            {
+                LabelDashboardIncomeValue.Content = _dataStorage.CalculateIncome();
+            }
         }
 
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
@@ -53,11 +67,12 @@ namespace FinanceControlSystem.UI.Components
             ShowAmountOfRub();
             ShowOutcome();
         }
-        public  void GetUpdate()
+        public void GetUpdate()
         {
             _dataStorage = DataStorage.LoadFromJson();
             ShowAmountOfRub();
             ShowOutcome();
+            ShowIncome();
         }
     }
 }

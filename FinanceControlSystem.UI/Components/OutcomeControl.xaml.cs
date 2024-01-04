@@ -2,6 +2,7 @@
 using FinanceControlSystem.Logics.Enum;
 using FinanceControlSystem.Logics.Models;
 using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -24,16 +25,10 @@ namespace FinanceControlSystem.UI.Components
                 _dataStorage = new DataStorage();
             }
 
-            FillComboBoxAccountOfPayments();
-            LoadListView();
-        }
-        private void FillComboBoxAccountOfPayments()
-        {
-
-            ComboBoxClientsFinanceType.Items.Clear();
-
-            List<string> financeTypesNames = GetListOfFinanceTypesForComboBoxAccountOfPayments();
-            ComboBoxClientsFinanceType.ItemsSource = financeTypesNames;
+            if (File.Exists("DataStorageVault.json"))
+            {
+                LoadListView();
+            }
         }
 
         private void ButtonAddOutcome_Click(object sender, RoutedEventArgs e)
@@ -54,7 +49,7 @@ namespace FinanceControlSystem.UI.Components
             }
 
             string accountName = ComboBoxClientsFinanceType.SelectedItem.ToString();
-            
+
             string descriptionCategory = TextBoxOutcomeName.Text;
 
             DateTime currentDate = DateTime.Now;
@@ -88,12 +83,16 @@ namespace FinanceControlSystem.UI.Components
             List<TransactionModel> transactionsList = _dataStorage.GetAllTransactionModels();
             foreach (TransactionModel transaction in transactionsList)
             {
-                string dOutcomeSumm = transaction.Summ.ToString();
-                string sPaymentsCategoryType = transaction.PaymentsCategoryType.ToString();
-                string sClientsFinanceType = transaction.ClientsFinanceType.ToString();
-                string descriptionCategory = transaction.Name.ToString();
-                string formattedDate = transaction.Date.ToString();
-                ListViewOutcome.Items.Add(new FinancialMovementsItem { ID = id, Outcome = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = formattedDate });
+                if (transaction.Type == TransactionType.Outcome)
+                {
+                    string dOutcomeSumm = transaction.Summ.ToString();
+                    string sPaymentsCategoryType = transaction.PaymentsCategoryType.ToString();
+                    string sClientsFinanceType = transaction.ClientsFinanceType.ToString();
+                    string descriptionCategory = transaction.Name.ToString();
+                    string formattedDate = transaction.Date.ToString();
+                    ListViewOutcome.Items.Add(new FinancialMovementsItem { ID = id, Outcome = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = formattedDate });
+                }
+
                 id++;
             }
         }
@@ -126,14 +125,15 @@ namespace FinanceControlSystem.UI.Components
 
             return accountId;
         }
-        
-        private bool SubstractTransactionForClientFinanceType(decimal outcome, string clientFinanceTypeName){ 
+
+        private bool SubstractTransactionForClientFinanceType(decimal outcome, string clientFinanceTypeName)
+        {
             List<ClientsFinanceModel> clientsFinanceModels = _dataStorage.GetAllClientModels().ToList();
             bool res = false;
 
-            foreach(var clientsFinaceModel in clientsFinanceModels)
+            foreach (var clientsFinaceModel in clientsFinanceModels)
             {
-                if(clientsFinaceModel.Name == $"{clientFinanceTypeName}")
+                if (clientsFinaceModel.Name == $"{clientFinanceTypeName}")
                 {
                     clientsFinaceModel.Balance -= outcome;
                     res = true;
@@ -142,6 +142,13 @@ namespace FinanceControlSystem.UI.Components
             }
 
             return res;
+        }
+        public void GetUpdate()
+        {
+
+            ListViewOutcome.Items.Clear();
+            _dataStorage = DataStorage.LoadFromJson();
+            LoadListView();
         }
     }
 }

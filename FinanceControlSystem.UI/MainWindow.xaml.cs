@@ -2,6 +2,7 @@
 using FinanceControlSystem.Logics;
 using FinanceControlSystem.Logics.Models;
 using FinanceControlSystem.UI.Components;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 
@@ -31,8 +32,12 @@ namespace FinanceControlSystem.UI
         private void TabControl_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             _dataStorage = DataStorage.LoadFromJson();
-
-            DashboardTab.GetUpdate();
+            if (File.Exists("DataStorageVault.json"))
+            {
+                DashboardTab.GetUpdate();
+                Outcome.GetUpdate();
+                Income.GetUpdate();
+            }
         }
     }
 }

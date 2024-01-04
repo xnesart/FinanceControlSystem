@@ -75,7 +75,15 @@ namespace FinanceControlSystem.Logics
 
         public List<TransactionModel> GetAllTransactionModels()
         {
-            return _transactions.Values.ToList();
+            List<TransactionModel> transactionList = new List<TransactionModel>();
+            if (_transactions != null)
+            {
+                return _transactions.Values.ToList();
+            }
+            else
+            {
+                return transactionList;
+            }
         }
 
         public int GetTransactionLastID()
@@ -90,10 +98,31 @@ namespace FinanceControlSystem.Logics
             List<TransactionModel> transactions = GetAllTransactionModels();
             foreach (var transaction in transactions)
             {
-                result += transaction.Summ;
+                if (transaction.Type == TransactionType.Outcome)
+                {
+                    result += transaction.Summ;
+
+                }
             }
 
             return result;
+        }
+
+        public decimal CalculateIncome()
+        {
+            decimal result = 0;
+            List<TransactionModel> transactions = GetAllTransactionModels();
+            foreach (var transaction in transactions)
+            {
+                if (transaction.Type == TransactionType.Income)
+                {
+                    result += transaction.Summ;
+
+                }
+            }
+
+            return result;
+
         }
         #endregion
 
@@ -132,6 +161,29 @@ namespace FinanceControlSystem.Logics
                     result += model.Balance;
                 }
             }
+
+            result = CalculateRubFromTransactions(result);
+
+            return result;
+        }
+
+        private decimal CalculateRubFromTransactions(decimal sum)
+        {
+            decimal result = sum;
+            List<TransactionModel> transactions = GetAllTransactionModels();
+
+            foreach (var transaction in transactions)
+            {
+                if (transaction.Type == TransactionType.Outcome && transaction.IsApproved == true)
+                {
+                    result -= transaction.Summ;
+                }
+                else if (transaction.Type == TransactionType.Income && transaction.IsApproved == true)
+                {
+                    result += transaction.Summ;
+                }
+            }
+
             return result;
         }
         #endregion
