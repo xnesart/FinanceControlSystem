@@ -40,7 +40,7 @@
         <ComboBox x:Name="ComboBoxIncomeCategory" Grid.Column="1" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:IncomeCategoryType}}}" SelectedIndex="0"/>
         <Label x:Name="LabelIncomeDescription" Content="Описание" HorizontalAlignment="Left" Margin="11,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.411,0.366" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="14"/>
         <TextBox x:Name="TextBoxIncomeDescription" Grid.Column="1" HorizontalAlignment="Left" Margin="10,16,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14" FontFamily="Comic Sans MS"/>
-        <ComboBox x:Name="ComboBoxClientsFinanceType" Grid.Column="1" HorizontalAlignment="Left" Margin="10,56,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:ClientsFinanceType}}}" SelectedIndex="0"/>
+        <ComboBox x:Name="ComboBoxClientsFinanceType" Grid.Column="1" HorizontalAlignment="Left" Margin="10,56,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding }"/>
         <Label x:Name="LabelAccountOfIncome" Content="Счёт дохода" HorizontalAlignment="Left" Margin="12,56,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.374,0.304" FontFamily="Comic Sans MS" FontSize="14"/>
         <Button Content="Добавить доход" HorizontalAlignment="Left" Margin="12,10,0,0" Grid.Row="2" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14" Click="Button_Click"/>
     </Grid>

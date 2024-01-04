@@ -1,21 +1,10 @@
 ﻿using FinanceControlSystem.Logics;
 using FinanceControlSystem.Logics.Enum;
 using FinanceControlSystem.Logics.Models;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FinanceControlSystem.UI.Components
 {
@@ -37,7 +26,20 @@ namespace FinanceControlSystem.UI.Components
                 _dataStorage = new DataStorage();
             }
 
-            LoadListView();
+            if (File.Exists("DataStorageVault.json"))
+            {
+                LoadListView();
+                FillComboBoxAccountOfPayments();
+            }
+        }
+
+        private void FillComboBoxAccountOfPayments()
+        {
+
+            //ComboBoxClientsFinanceType.Items.Clear();
+            
+            List<string> financeTypesNames = GetListOfFinanceTypesForComboBoxAccountOfPayments();
+            ComboBoxClientsFinanceType.ItemsSource = financeTypesNames;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -79,7 +81,7 @@ namespace FinanceControlSystem.UI.Components
             List<TransactionModel> transactionsList = _dataStorage.GetAllTransactionModels();
             foreach (TransactionModel transaction in transactionsList)
             {
-                if(transaction.Type == TransactionType.Income)
+                if (transaction.Type == TransactionType.Income)
                 {
                     string sum = transaction.Summ.ToString();
                     string sCategoryOfIncome = transaction.PaymentsCategoryType.ToString();
@@ -87,7 +89,7 @@ namespace FinanceControlSystem.UI.Components
                     string description = transaction.Name.ToString();
                     string formattedDate = transaction.Date.ToString();
                     ListViewIncome.Items.Add(new FinancialMovementsItem { ID = id, Income = sum.ToString(), Category = sCategoryOfIncome, Account = sClientsFinanceType, Description = description, Date = formattedDate });
-                    
+
                 }
                 id++;
             }
@@ -111,11 +113,25 @@ namespace FinanceControlSystem.UI.Components
             return res;
         }
 
+        private List<string> GetListOfFinanceTypesForComboBoxAccountOfPayments()
+        {
+            List<string> financeTypesNames = new List<string>();
+            List<ClientsFinanceModel> clients = _dataStorage.GetAllClientModels();
+
+            foreach (ClientsFinanceModel client in clients)
+            {
+                financeTypesNames.Add(client.Name);
+            }
+
+            return financeTypesNames;
+        }
+
         public void GetUpdate()
         {
             ListViewIncome.Items.Clear();
             _dataStorage = DataStorage.LoadFromJson();
             LoadListView();
+            FillComboBoxAccountOfPayments();
         }
     }
 }

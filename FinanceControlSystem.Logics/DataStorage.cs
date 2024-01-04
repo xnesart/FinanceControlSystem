@@ -166,43 +166,43 @@ namespace FinanceControlSystem.Logics
         }
 
         //не работает!
-        public decimal CalculateRubFromClientFinanceModels()
-        {
-            decimal result = 0;
+        //public decimal CalculateRubFromClientFinanceModels()
+        //{
+        //    decimal result = 0;
 
-            List<ClientsFinanceModel> models = GetAllClientModels();
-            foreach (var model in models)
-            {
-                if (model.Сurrency == Enum.CurrencyType.rub && model.Type != ClientsFinanceType.Debt && model.Type != ClientsFinanceType.CreditCard)
-                {
-                    result += model.Balance;
-                }
-            }
+        //    List<ClientsFinanceModel> models = GetAllClientModels();
+        //    foreach (var model in models)
+        //    {
+        //        if (model.Сurrency == Enum.CurrencyType.rub && model.Type != ClientsFinanceType.Debt && model.Type != ClientsFinanceType.CreditCard)
+        //        {
+        //            result += model.Balance;
+        //        }
+        //    }
 
-            result = CalculateRubFromTransactions(result);
+        //    result = CalculateRubFromTransactions(result);
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        private decimal CalculateRubFromTransactions(decimal sum)
-        {
-            decimal result = sum;
-            List<TransactionModel> transactions = GetAllTransactionModels();
+        //private decimal CalculateRubFromTransactions(decimal sum)
+        //{
+        //    decimal result = sum;
+        //    List<TransactionModel> transactions = GetAllTransactionModels();
 
-            foreach (var transaction in transactions)
-            {
-                if (transaction.Type == TransactionType.Outcome && transaction.IsApproved == true)
-                {
-                    result -= transaction.Summ;
-                }
-                else if (transaction.Type == TransactionType.Income && transaction.IsApproved == true)
-                {
-                    result += transaction.Summ;
-                }
-            }
+        //    foreach (var transaction in transactions)
+        //    {
+        //        if (transaction.Type == TransactionType.Outcome && transaction.IsApproved == true)
+        //        {
+        //            result -= transaction.Summ;
+        //        }
+        //        else if (transaction.Type == TransactionType.Income && transaction.IsApproved == true)
+        //        {
+        //            result += transaction.Summ;
+        //        }
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
         #endregion
 
         #region SaveAndLoad
