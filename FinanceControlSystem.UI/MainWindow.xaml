@@ -27,6 +27,9 @@
             <TabItem x:Name="TabItemOutcome" Header="Расходы">
                 <components:OutcomeControl x:Name="Расходы"></components:OutcomeControl>
             </TabItem>
+            <TabItem x:Name="TabItemIncome" Header="Доходы">
+                <components:IncomeControl x:Name="Доходы"></components:IncomeControl>
+            </TabItem>
             <TabItem Header="Планирование">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>

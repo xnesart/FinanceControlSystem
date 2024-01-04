@@ -11,6 +11,7 @@ namespace FinanceControlSystem.UI.Components
     {
         public int ID { get; set; }
         public string Outcome { get; set; }
+        public string Income { get; set; }
         public string Category { get; set; }
         public string Account { get; set; }
         public string Description { get; set; }
