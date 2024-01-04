@@ -77,6 +77,7 @@ namespace FinanceControlSystem.UI.Components
             //переносим данные транзакции в ListView
             ListViewOutcome.Items.Add(new FinancialMovementsItem { ID = lastId, Outcome = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = formattedDate });
 
+            SubstractTransactionForClientFinanceType(dOutcomeSumm, accountName);
             _dataStorage.AddTransaction(transaction);
             _dataStorage.SaveToJson(_dataStorage);
         }
@@ -124,6 +125,23 @@ namespace FinanceControlSystem.UI.Components
             }
 
             return accountId;
+        }
+        
+        private bool SubstractTransactionForClientFinanceType(decimal outcome, string clientFinanceTypeName){ 
+            List<ClientsFinanceModel> clientsFinanceModels = _dataStorage.GetAllClientModels().ToList();
+            bool res = false;
+
+            foreach(var clientsFinaceModel in clientsFinanceModels)
+            {
+                if(clientsFinaceModel.Name == $"{clientFinanceTypeName}")
+                {
+                    clientsFinaceModel.Balance -= outcome;
+                    res = true;
+                    break;
+                }
+            }
+
+            return res;
         }
     }
 }
