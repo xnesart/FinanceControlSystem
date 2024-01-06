@@ -21,14 +21,14 @@
         </Grid.RowDefinitions>
         <TextBox x:Name="TextBoxNameOfAccount" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="LabelNameOfAccount" Content="Название счёта" HorizontalAlignment="Left" Margin="20,23,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
-        <Label x:Name="LabelCategoryOfAccount" Content="Категория" HorizontalAlignment="Left" Margin="30,58,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
-        <Label x:Name="LabelBalance" Content="Баланс" HorizontalAlignment="Left" Margin="25,159,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+        <Label x:Name="LabelCategoryOfAccount" Content="Категория" HorizontalAlignment="Left" Margin="20,58,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
+        <Label x:Name="LabelBalance" Content="Баланс" HorizontalAlignment="Left" Margin="20,159,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
         <TextBox x:Name="TextBoxBalance" HorizontalAlignment="Center" Margin="0,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.503,-3.584"/>
         <ListBox x:Name="ListBoxMain" Grid.Column="1" Grid.RowSpan="2" />
-        <Button x:Name="ButtonAddAccount" Content="Добавить счёт" HorizontalAlignment="Left" Margin="20,30,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-0.233,0.64" Click="ButtonAddAccount_Click"/>
-        <Button x:Name="ButtonDeleteAccount" Content="Удалить счёт" HorizontalAlignment="Left" Margin="140,30,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.496,5.719" Click="ButtonDeleteAccount_Click"/>
-        <Label x:Name="LabelCurrency" Content="Валюта" HorizontalAlignment="Left" Margin="29,89,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" RenderTransformOrigin="0.321,-5.968"/>
-        <Label x:Name="LabelDescription" Content="Описание счёта" HorizontalAlignment="Left" Margin="25,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.339,-0.064" FontFamily="Comic Sans MS"/>
+        <Button x:Name="ButtonAddAccount" Content="Добавить счёт" HorizontalAlignment="Left" Padding="5" Margin="20,30,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-0.233,0.64" Click="ButtonAddAccount_Click"/>
+        <Button x:Name="ButtonDeleteAccount" Content="Удалить счёт" HorizontalAlignment="Left" Padding="5" Margin="140,30,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.496,5.719" Click="ButtonDeleteAccount_Click"/>
+        <Label x:Name="LabelCurrency" Content="Валюта" HorizontalAlignment="Left" Margin="20,89,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" RenderTransformOrigin="0.321,-5.968"/>
+        <Label x:Name="LabelDescription" Content="Описание счёта" HorizontalAlignment="Left" Margin="20,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.339,-0.064" FontFamily="Comic Sans MS"/>
         <TextBox x:Name="TextBoxDescription" HorizontalAlignment="Center" Margin="0,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="ComboBoxClientsFinanceType" HorizontalAlignment="Center" Margin="0,58,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:ClientsFinanceType}}}"/>
         <ComboBox x:Name="ComboBoxCurrencyType" HorizontalAlignment="Center" Margin="0,89,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type logic:CurrencyType}}}" SelectionChanged="ComboBoxCurrencyType_SelectionChanged"/>

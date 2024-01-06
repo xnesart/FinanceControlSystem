@@ -13,28 +13,28 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="117*"></RowDefinition>
-            <RowDefinition Height="45*"></RowDefinition>
-            <RowDefinition Height="71*"/>
-            <RowDefinition Height="117*"></RowDefinition>
-            <RowDefinition Height="117*"></RowDefinition>
-            <RowDefinition Height="117*"></RowDefinition>
-            <RowDefinition Height="117*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Rectangle x:Name="RectangleIncome" HorizontalAlignment="Left" Height="97" Margin="10,0,0,0" Grid.Row="3" RadiusX="10" RadiusY="10" Stroke="Black" VerticalAlignment="Center" Width="307" Fill="#FFA9DC97" RenderTransformOrigin="0.5,0.5"/>
-        <Label x:Name="LabelDashboardIncomeTitle" Content="Ваши доходы:" HorizontalAlignment="Left" Margin="23,24,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="0.104,0.48" FontFamily="Comic Sans MS" FontSize="16"/>
-        <Label x:Name="LabelDashboardIncomeValue" Content="0 руб" HorizontalAlignment="Left" Margin="30,56,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="-0.517,0.332"/>
-        <Rectangle x:Name="RectangleOutcome" HorizontalAlignment="Center" Height="96" Grid.Row="3" RadiusX="10" RadiusY="10" Stroke="Black" VerticalAlignment="Center" Width="313" Fill="#FF7BCFF3" Grid.Column="1"/>
-        <Label x:Name="LabelDashboardOutcomeTitle" Content="Ваши расходы:" HorizontalAlignment="Left" Margin="29,19,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="0.104,0.48" FontFamily="Comic Sans MS" FontSize="16" Grid.Column="1"/>
-        <Label x:Name="LabelDashboardOutcomeValue" Content="0 руб" HorizontalAlignment="Left"  Margin="29,51,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="-0.517,0.332" Grid.Column="1"/>
+        <Rectangle x:Name="RectangleIncome" HorizontalAlignment="Left" Height="80" Grid.Row="2" RadiusX="10" RadiusY="10" Stroke="Black" VerticalAlignment="Center" Width="307" Fill="#FFA9DC97" RenderTransformOrigin="0.5,0.5" Margin="10,0,0,0"/>
+        <Label x:Name="LabelDashboardIncomeTitle" Content="Ваши доходы:" HorizontalAlignment="Left" Margin="30,18,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.104,0.48" FontFamily="Comic Sans MS" FontSize="16"/>
+        <Label x:Name="LabelDashboardIncomeValue" Content="0 руб" HorizontalAlignment="Left" Margin="30,50,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.517,0.332" Width="75"/>
+        <Rectangle x:Name="RectangleOutcome" HorizontalAlignment="Center" Height="80" Grid.Row="2" RadiusX="10" RadiusY="10" Stroke="Black" VerticalAlignment="Center" Width="314" Fill="#FF7BCFF3" Grid.Column="1"/>
+        <Label x:Name="LabelDashboardOutcomeTitle" Content="Ваши расходы:" HorizontalAlignment="Left" Margin="41,18,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.029,0.464" FontFamily="Comic Sans MS" FontSize="16" Grid.Column="1"/>
+        <Label x:Name="LabelDashboardOutcomeValue" Content="0 руб" HorizontalAlignment="Left"  Margin="41,50,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.517,0.332" Grid.Column="1" Width="127"/>
         <Label x:Name="LabelDashboardMain" Content="Ваши доходы и расходы на данный момент" HorizontalAlignment="Left"  FontSize="20" FontFamily="Comic Sans MS" Panel.ZIndex="2" RenderTransformOrigin="0.5,0.5" Width="716" Margin="119,0,0,0" Height="38" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
         <Rectangle HorizontalAlignment="Left" Height="59" Stroke="Black" RadiusX="10" RadiusY="10" VerticalAlignment="Center" Width="738" Fill="#FFA9DC97" Grid.ColumnSpan="3" Margin="108,0,0,0"/>
-        <Rectangle x:Name="RectangleDebt" HorizontalAlignment="Center" Height="96" Grid.Row="3" RadiusX="10" RadiusY="10" Stroke="Black" VerticalAlignment="Center" Width="313" Fill="#FFE6BFBF" Grid.Column="2"/>
-        <Label x:Name="LabelDashboardDebtTitle" Content="Ваши долги:" HorizontalAlignment="Left" Margin="26,24,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="0.104,0.48" FontFamily="Comic Sans MS" FontSize="16" Grid.Column="2" Height="34" Width="108"/>
-        <Label x:Name="LabelDashboardDebtValue" Content="0 руб" HorizontalAlignment="Left"  Margin="26,58,0,0" Grid.Row="3" VerticalAlignment="Top" RenderTransformOrigin="-0.517,0.332" Grid.Column="2"/>
-        <Rectangle x:Name="RectangleCountOfRub" Grid.Row="1" RadiusX="10" RadiusY="10" Stroke="Black" Fill="#FFA9DC97" RenderTransformOrigin="0.5,0.5" Margin="16,9,16,10" Grid.RowSpan="2"/>
-        <Label x:Name="LabelDashboardCountOfRubTitle" Content="Всего денег на счетах в руб:" Margin="31,27,0,50" Grid.Row="1" RenderTransformOrigin="0.104,0.48" FontFamily="Comic Sans MS" FontSize="16" HorizontalAlignment="Left" Width="227" Grid.RowSpan="2"/>
-        <Label x:Name="LabelDashboardCountOfRubValue" Content="0 руб" Margin="31,17,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.517,0.332" HorizontalAlignment="Left" Width="39"/>
+        <Rectangle x:Name="RectangleDebt" HorizontalAlignment="Left" Height="80" Grid.Row="2" RadiusX="10" RadiusY="10" Stroke="Black" VerticalAlignment="Center" Width="296" Fill="#FFE6BFBF" Grid.Column="2" Margin="10,0,0,0"/>
+        <Label x:Name="LabelDashboardDebtTitle" Content="Ваши долги:" HorizontalAlignment="Left" Margin="26,17,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.104,0.48" FontFamily="Comic Sans MS" FontSize="16" Grid.Column="2" Height="34" Width="108"/>
+        <Label x:Name="LabelDashboardDebtValue" Content="0 руб" HorizontalAlignment="Left"  Margin="26,56,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.517,0.332" Grid.Column="2" Width="82"/>
+        <Rectangle x:Name="RectangleCountOfRub" Grid.Row="1" RadiusX="10" RadiusY="10" Stroke="Black" Fill="#FFA9DC97" RenderTransformOrigin="0.5,0.5" Margin="16,9,27,10" Grid.ColumnSpan="3"/>
+        <Label x:Name="LabelDashboardCountOfRubTitle" Content="Всего денег на счетах в руб:" Margin="31,14,0,45" Grid.Row="1" RenderTransformOrigin="0.104,0.48" FontFamily="Comic Sans MS" FontSize="16" HorizontalAlignment="Left" Width="226" Grid.Column="1"/>
+        <Label x:Name="LabelDashboardCountOfRubValue" Content="0 руб" Margin="90,0,0,0" Grid.Row="1" VerticalAlignment="Center" RenderTransformOrigin="-0.517,0.332" HorizontalAlignment="Left" Width="88"/>
     </Grid>
 </UserControl>
