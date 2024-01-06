@@ -1,7 +1,6 @@
 ﻿using FinanceControlSystem.Logics;
 using FinanceControlSystem.Logics.Enum;
 using FinanceControlSystem.Logics.Models;
-using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -62,8 +61,29 @@ namespace FinanceControlSystem.UI.Components
 
             string descriptionCategory = TextBoxOutcomeName.Text;
 
-            DateTime currentDate = DateTime.Now;
-            string formattedDate = currentDate.ToString("dd.MM.yyyy HH:mm");
+            //DateTime currentDate = DatePickerOutcomeDate.SelectedDate;
+            //string formattedDate = "";
+            //if (currentDate.HasValue)
+            //{
+            //    //formattedDate = DatePickerOutcomeDate.Text.ToString();
+            //    //string formattedDate = currentDate.ToString("dd.MM.yyyy HH:mm");
+            //}
+
+            DateTime? selectedDate = DatePickerOutcomeDate.SelectedDate;
+            DateTime date;
+            string formattedDate;
+            if (selectedDate.HasValue)
+            {
+                date = selectedDate.Value;
+                formattedDate = selectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                //formattedDate = selectedDate.Value;
+            }
+            else
+            {
+                date = DateTime.Now;
+                formattedDate = DateTime.Now.ToString();
+            }
+
 
             //создаем транзакцию
             TransactionModel transaction = new TransactionModel()
@@ -74,7 +94,7 @@ namespace FinanceControlSystem.UI.Components
                 PaymentsCategoryType = sPaymentsCategoryType,
                 Summ = dOutcomeSumm,
                 IsApproved = true,
-                Date = DateTime.ParseExact(formattedDate, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture),
+                Date = date,
             };
 
             int lastId = _dataStorage.GetTransactionLastID();
