@@ -61,13 +61,6 @@ namespace FinanceControlSystem.UI.Components
 
             string descriptionCategory = TextBoxOutcomeName.Text;
 
-            //DateTime currentDate = DatePickerOutcomeDate.SelectedDate;
-            //string formattedDate = "";
-            //if (currentDate.HasValue)
-            //{
-            //    //formattedDate = DatePickerOutcomeDate.Text.ToString();
-            //    //string formattedDate = currentDate.ToString("dd.MM.yyyy HH:mm");
-            //}
 
             DateTime? selectedDate = DatePickerOutcomeDate.SelectedDate;
             DateTime date;
@@ -76,14 +69,12 @@ namespace FinanceControlSystem.UI.Components
             {
                 date = selectedDate.Value;
                 formattedDate = selectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                //formattedDate = selectedDate.Value;
             }
             else
             {
                 date = DateTime.Now;
                 formattedDate = DateTime.Now.ToString();
             }
-
 
             //создаем транзакцию
             TransactionModel transaction = new TransactionModel()

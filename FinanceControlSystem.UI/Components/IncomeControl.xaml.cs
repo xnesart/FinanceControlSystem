@@ -49,9 +49,19 @@ namespace FinanceControlSystem.UI.Components
             string sCategoryOfIncome = ComboBoxIncomeCategory.SelectedItem.ToString();
             string sClientFinanceType = ComboBoxClientsFinanceType.SelectedItem.ToString();
 
-
-            DateTime currentDate = DateTime.Now;
-            string formattedDate = currentDate.ToString("dd.MM.yyyy HH:mm");
+            DateTime? selectedDate = DatePickerIncomeDate.SelectedDate;
+            DateTime date;
+            string formattedDate;
+            if (selectedDate.HasValue)
+            {
+                date = selectedDate.Value;
+                formattedDate = selectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                date = DateTime.Now;
+                formattedDate = DateTime.Now.ToString();
+            }
 
             //создаем транзакцию
             TransactionModel transaction = new TransactionModel()
@@ -62,7 +72,7 @@ namespace FinanceControlSystem.UI.Components
                 PaymentsCategoryType = sCategoryOfIncome,
                 Summ = sum,
                 IsApproved = true,
-                Date = DateTime.ParseExact(formattedDate, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture),
+                Date = date,
             };
 
             int lastId = _dataStorage.GetTransactionLastID();
@@ -89,7 +99,6 @@ namespace FinanceControlSystem.UI.Components
                     string description = transaction.Name.ToString();
                     string formattedDate = transaction.Date.ToString();
                     ListViewIncome.Items.Add(new FinancialMovementsItem { ID = id, Income = sum.ToString(), Category = sCategoryOfIncome, Account = sClientsFinanceType, Description = description, Date = formattedDate });
-
                 }
                 id++;
             }

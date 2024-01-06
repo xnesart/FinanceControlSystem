@@ -44,8 +44,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="ButtonAddOutcome" Content="Добавить расход" HorizontalAlignment="Left" Margin="10,55,0,0" Grid.Row="2" VerticalAlignment="Top" Click="ButtonAddOutcome_Click"/>
-        <Button x:Name="ButtonRemoveOutcome" Grid.Column="1" Content="Удалить расход" HorizontalAlignment="Left" Margin="10,55,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonAddOutcome" Content="Добавить расход" HorizontalAlignment="Left" Padding="5" Margin="10,50,0,0" Grid.Row="2" VerticalAlignment="Top" Click="ButtonAddOutcome_Click"/>
+        <Button x:Name="ButtonRemoveOutcome" Grid.Column="1" Content="Удалить расход" HorizontalAlignment="Left" Padding="5" Margin="10,50,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <DatePicker x:Name="DatePickerOutcomeDate" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" SelectedDate="{x:Static sys:DateTime.Now}"/>
         <Label Content="Дата списания" HorizontalAlignment="Left" Margin="11,10,0,0" Grid.Row="2" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
     </Grid>
