@@ -13,6 +13,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"></ColumnDefinition>
             <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -21,8 +22,11 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView x:Name="ListViewIncome" Grid.Column="2" Grid.RowSpan="5" >
+        <ListView x:Name="ListViewIncome" Grid.Column="2" Grid.RowSpan="8" Grid.ColumnSpan="2" >
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -36,16 +40,16 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="LabelIncomeName" Content="Сумма дохода" HorizontalAlignment="Left" Margin="11,12,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
-        <TextBox x:Name="TextBoxSumOfIncome" Grid.Column="1" HorizontalAlignment="Left" Margin="10,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS" FontSize="14"/>
-        <Label Content="Категория дохода" HorizontalAlignment="Left" Margin="11,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.669,0.042" FontFamily="Comic Sans MS" FontSize="14"/>
-        <ComboBox x:Name="ComboBoxIncomeCategory" Grid.Column="1" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:IncomeCategoryType}}}" SelectedIndex="0"/>
-        <Label x:Name="LabelIncomeDescription" Content="Описание" HorizontalAlignment="Left" Margin="11,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.411,0.366" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="14"/>
-        <TextBox x:Name="TextBoxIncomeDescription" Grid.Column="1" HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14" FontFamily="Comic Sans MS"/>
-        <ComboBox x:Name="ComboBoxClientsFinanceType" Grid.Column="1" HorizontalAlignment="Left" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding }"/>
-        <Label x:Name="LabelAccountOfIncome" Content="Счёт дохода" HorizontalAlignment="Left" Margin="11,50,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.374,0.304" FontFamily="Comic Sans MS" FontSize="14"/>
-        <Button Content="Добавить доход" HorizontalAlignment="Left" Padding="5" Margin="11,10,0,0" Grid.Row="3" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14" Click="Button_Click"/>
-        <Label Content="Дата" HorizontalAlignment="Left" Margin="11,10,0,0" Grid.Row="2" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
-        <DatePicker x:Name="DatePickerIncomeDate" Grid.Column="1" HorizontalAlignment="Left" Margin="10,16,0,0" Grid.Row="2" VerticalAlignment="Top" SelectedDate="{x:Static sys:DateTime.Now}"/>
+        <Label x:Name="LabelIncomeName" Content="Сумма дохода" HorizontalAlignment="Left" Margin="25,12,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
+        <TextBox x:Name="TextBoxSumOfIncome" Grid.Column="1" HorizontalAlignment="Left" Margin="18,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="Comic Sans MS" FontSize="14"/>
+        <Label Content="Категория дохода" HorizontalAlignment="Left" Margin="25,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.669,0.042" FontFamily="Comic Sans MS" FontSize="14" Grid.Row="1"/>
+        <ComboBox x:Name="ComboBoxIncomeCategory" Grid.Column="1" HorizontalAlignment="Left" Margin="18,12,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:IncomeCategoryType}}}" SelectedIndex="0" RenderTransformOrigin="0.96,3.734" Grid.Row="1"/>
+        <Label x:Name="LabelIncomeDescription" Content="Описание" HorizontalAlignment="Left" Margin="25,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.411,0.366" Grid.Row="2" FontFamily="Comic Sans MS" FontSize="14"/>
+        <TextBox x:Name="TextBoxIncomeDescription" Grid.Column="1" HorizontalAlignment="Left" Margin="18,12,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="14" FontFamily="Comic Sans MS"/>
+        <ComboBox x:Name="ComboBoxClientsFinanceType" Grid.Column="1" HorizontalAlignment="Left" Margin="18,12,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120" ItemsSource="{Binding }"/>
+        <Label x:Name="LabelAccountOfIncome" Content="Счёт дохода" HorizontalAlignment="Left" Margin="25,0,0,0" Grid.Row="3" VerticalAlignment="Center" RenderTransformOrigin="0.374,0.304" FontFamily="Comic Sans MS" FontSize="14"/>
+        <Button Content="Добавить доход" HorizontalAlignment="Left" Padding="5" Margin="25,0,0,0" Grid.Row="5" VerticalAlignment="Center" FontFamily="Comic Sans MS" FontSize="14" Click="Button_Click"/>
+        <Label Content="Дата" HorizontalAlignment="Left" Margin="25,12,0,0" Grid.Row="4" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14" RenderTransformOrigin="0.394,3.463"/>
+        <DatePicker x:Name="DatePickerIncomeDate" Grid.Column="1" HorizontalAlignment="Center" Margin="0,18,0,0" Grid.Row="4" VerticalAlignment="Top" SelectedDate="{x:Static sys:DateTime.Now}"/>
     </Grid>
 </UserControl>

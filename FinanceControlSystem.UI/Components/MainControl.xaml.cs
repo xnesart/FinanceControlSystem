@@ -180,5 +180,10 @@ namespace FinanceControlSystem.UI.Components
                 TextBoxDescription.Text = model.Desciption;
             }
         }
+
+        private void ComboBoxClientsFinanceType_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
