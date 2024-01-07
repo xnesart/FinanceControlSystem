@@ -14,6 +14,7 @@ namespace FinanceControlSystem.UI.Components
     {
         private AccountClient _accountClient;
         private DataStorage _dataStorage;
+        private Dictionary<int, int> _listBoxItemsId;
         public MainControl()
         {
             InitializeComponent();
@@ -147,12 +148,11 @@ namespace FinanceControlSystem.UI.Components
         private void LoadListBox()
         {
             ListBoxMain.Items.Clear();
+            _listBoxItemsId = new Dictionary<int, int>();
             foreach (ClientsFinanceModel model in _dataStorage.GetAllClientModels())
             {
-                Label label = new Label();
-                label.Content = model.Name;
-                SetLabelBackground(ref label, model);
-                ListBoxMain.Items.Add(label);
+                int number = ListBoxMain.Items.Add(new FinanceListItem(model));
+                _listBoxItemsId.Add(number, model.Id);
             }
         }
 
@@ -164,6 +164,21 @@ namespace FinanceControlSystem.UI.Components
         private void ComboBoxCurrencyType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void ListBoxMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListBoxMain.SelectedIndex != -1)
+            {
+
+                int modelId = _listBoxItemsId[ListBoxMain.SelectedIndex];
+                ClientsFinanceModel model = _dataStorage.GetClientModelByID(modelId);
+                TextBoxNameOfAccount.Text = model.Name;
+                ComboBoxClientsFinanceType.SelectedItem = model.Type;
+                ComboBoxCurrencyType.SelectedItem = model.Сurrency;
+                TextBoxBalance.Text = model.Balance.ToString();
+                TextBoxDescription.Text = model.Desciption;
+            }
         }
     }
 }

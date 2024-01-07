@@ -24,7 +24,7 @@
         <Label x:Name="LabelCategoryOfAccount" Content="Категория" HorizontalAlignment="Left" Margin="20,58,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
         <Label x:Name="LabelBalance" Content="Баланс" HorizontalAlignment="Left" Margin="20,159,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
         <TextBox x:Name="TextBoxBalance" HorizontalAlignment="Center" Margin="0,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="1.503,-3.584"/>
-        <ListBox x:Name="ListBoxMain" Grid.Column="1" Grid.RowSpan="2" />
+        <ListBox x:Name="ListBoxMain" Grid.Column="1" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" SelectionChanged="ListBoxMain_SelectionChanged" />
         <Button x:Name="ButtonAddAccount" Content="Добавить счёт" HorizontalAlignment="Left" Padding="5" Margin="20,30,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-0.233,0.64" Click="ButtonAddAccount_Click"/>
         <Button x:Name="ButtonDeleteAccount" Content="Удалить счёт" HorizontalAlignment="Left" Padding="5" Margin="140,30,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.496,5.719" Click="ButtonDeleteAccount_Click"/>
         <Label x:Name="LabelCurrency" Content="Валюта" HorizontalAlignment="Left" Margin="20,89,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" RenderTransformOrigin="0.321,-5.968"/>
