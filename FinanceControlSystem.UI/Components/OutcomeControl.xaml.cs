@@ -62,6 +62,7 @@ namespace FinanceControlSystem.UI.Components
             DateTime? selectedDate = DatePickerOutcomeDate.SelectedDate;
             DateTime date;
             string formattedDate;
+
             if (selectedDate.HasValue)
             {
                 date = selectedDate.Value;
@@ -73,6 +74,10 @@ namespace FinanceControlSystem.UI.Components
                 formattedDate = DateTime.Now.ToString();
             }
 
+  
+
+            ClientsFinanceModel model = CheckAccountOfPayment(sClientsFinanceType);
+  
             //создаем транзакцию
             TransactionModel transaction = new TransactionModel()
             {
@@ -82,8 +87,23 @@ namespace FinanceControlSystem.UI.Components
                 PaymentsCategoryType = sPaymentsCategoryType,
                 Summ = dOutcomeSumm,
                 IsApproved = true,
+                IsDebt = false,
                 Date = date,
+                
             };
+
+
+            //связываем транзакцию со счётом списания
+            if (model != null)
+            {
+                transaction.AccountOfPayment = model.Type;
+                
+                //проверяем, является ли долгом
+                if(model.Type == ClientsFinanceType.Debt)
+                {
+                    transaction.IsDebt = true;
+                }
+            }
 
             _dataStorage.AddTransaction(transaction);
             int lastId = _dataStorage.GetTransactionLastID() - 1;
@@ -188,6 +208,21 @@ namespace FinanceControlSystem.UI.Components
             _dataStorage = DataStorage.LoadFromJson();
             LoadListView();
             FillComboBoxAccountOfPayments();
+        }
+
+        private ClientsFinanceModel CheckAccountOfPayment(string choice)
+        {
+            //List<TransactionModel> models = _dataStorage.GetAllTransactionModels();
+            List<ClientsFinanceModel> finances = _dataStorage.GetAllClientModels();
+            foreach (ClientsFinanceModel finance in finances)
+            {
+                if(finance.Name == choice)
+                {
+                    return finance;
+                }
+            }
+
+            return null;
         }
     }
 }

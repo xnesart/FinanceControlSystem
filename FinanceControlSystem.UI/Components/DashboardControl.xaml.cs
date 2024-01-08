@@ -61,6 +61,15 @@ namespace FinanceControlSystem.UI.Components
             }
         }
 
+        private void ShowDebt()
+        {
+            if (_dataStorage != null)
+            {
+                LabelDashboardDebtValue.Content = _dataStorage.CalculateDebt();
+
+            }
+        }
+
         private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
         {
             _dataStorage = DataStorage.LoadFromJson();
@@ -73,6 +82,7 @@ namespace FinanceControlSystem.UI.Components
             ShowAmountOfRub();
             ShowOutcome();
             ShowIncome();
+            ShowDebt();
         }
     }
 }

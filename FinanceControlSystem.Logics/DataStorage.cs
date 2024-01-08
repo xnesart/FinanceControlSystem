@@ -20,6 +20,7 @@ namespace FinanceControlSystem.Logics
         private int _transactionsLastId;
         [JsonProperty]
         private int _clientsFinanceLastId;
+        private string _filePath;
 
         public DataStorage()
         {
@@ -30,6 +31,7 @@ namespace FinanceControlSystem.Logics
             _transactionsCategoriesLastId = 1;
             _transactionsLastId = 1;
             _clientsFinanceLastId = 1;
+            _filePath = Options.FilePath;
         }
         #region TransactionCategories
         public void AddCategory(TransactionCategoryModel category)
@@ -124,6 +126,22 @@ namespace FinanceControlSystem.Logics
             return result;
 
         }
+
+        public decimal CalculateDebt()
+        {
+            decimal result = 0;
+            List<TransactionModel> transactions = GetAllTransactionModels();
+            foreach (var transaction in transactions)
+            {
+                if (transaction.Type == TransactionType.Outcome && transaction.IsDebt == true)
+                {
+                    result -= transaction.Summ;
+
+                }
+            }
+
+            return result;
+        }
         #endregion
 
         #region ClientFinanceModel
@@ -206,12 +224,12 @@ namespace FinanceControlSystem.Logics
         #endregion
 
         #region SaveAndLoad
-        public void SaveToJson(string filePath = "DataStorageVault.json")
+        public void SaveToJson()
         {
             try
             {
                 string jsonData = JsonConvert.SerializeObject(this, Formatting.Indented);
-                File.WriteAllText(filePath, jsonData);
+                File.WriteAllText(_filePath, jsonData);
                 Console.WriteLine("Данные успешно сохранены в файл JSON.");
             }
             catch (Exception ex)

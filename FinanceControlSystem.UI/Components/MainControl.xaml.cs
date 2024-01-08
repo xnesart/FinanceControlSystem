@@ -144,5 +144,10 @@ namespace FinanceControlSystem.UI.Components
                 TextBoxDescription.Text = model.Desciption;
             }
         }
+        public void GetUpdate()
+        {
+            _dataStorage = DataStorage.LoadFromJson();
+            LoadListBox();
+        }
     }
 }

@@ -18,11 +18,13 @@ namespace FinanceControlSystem.Logics.Models
         public DateTime Date { get; set; }
 
         public string ClientsFinanceType { get; set; }
+        public ClientsFinanceType AccountOfPayment { get; set; }    
 
         public string PaymentsCategoryType { get; set; }
 
         public TransactionType Type { get; set; }
 
         public bool IsApproved { get; set; }
+        public bool IsDebt { get; set; }
     }
 }

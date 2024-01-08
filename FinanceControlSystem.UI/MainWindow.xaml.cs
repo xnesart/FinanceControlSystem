@@ -37,6 +37,7 @@ namespace FinanceControlSystem.UI
                 DashboardTab.GetUpdate();
                 Outcome.GetUpdate();
                 Income.GetUpdate();
+                MainTab.GetUpdate();
             }
         }
     }
