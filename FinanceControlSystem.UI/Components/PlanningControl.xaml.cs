@@ -1,21 +1,7 @@
 ﻿using FinanceControlSystem.Logics;
-using FinanceControlSystem.Logics.Enum;
 using FinanceControlSystem.Logics.Models;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FinanceControlSystem.UI.Components
 {
@@ -69,7 +55,25 @@ namespace FinanceControlSystem.UI.Components
             List<TransactionModel> transactionsList = _dataStorage.GetAllTransactionModels();
             foreach (TransactionModel transaction in transactionsList)
             {
-                if (transaction.Type == TransactionType.Outcome)
+                int id = transaction.Id;
+                string dOutcomeSumm = transaction.Summ.ToString();
+                string sPaymentsCategoryType = transaction.PaymentsCategoryType.ToString();
+                string sClientsFinanceType = transaction.ClientsFinanceType.ToString();
+                string descriptionCategory = transaction.Name.ToString();
+                string formattedDate = transaction.Date.ToString();
+                bool income = transaction.IsIncome;
+                bool approved = transaction.IsApproved;
+                ListViewOutcome.Items.Add(new FinancialMovementsItem { ID = id, Summ = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, IsIncome = income, IsApproved = approved, Description = descriptionCategory, Date = formattedDate });
+            }
+        }
+        private void LoadListViewOutcome()
+        {
+            ListViewOutcome.Items.Clear();
+
+            List<TransactionModel> transactionsList = _dataStorage.GetAllTransactionModels();
+            foreach (TransactionModel transaction in transactionsList)
+            {
+                if(transaction.Type == Logics.Enum.TransactionType.Outcome)
                 {
                     int id = transaction.Id;
                     string dOutcomeSumm = transaction.Summ.ToString();
@@ -77,10 +81,21 @@ namespace FinanceControlSystem.UI.Components
                     string sClientsFinanceType = transaction.ClientsFinanceType.ToString();
                     string descriptionCategory = transaction.Name.ToString();
                     string formattedDate = transaction.Date.ToString();
-                    ListViewOutcome.Items.Add(new FinancialMovementsItem { ID = id, Outcome = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = formattedDate });
+                    bool income = transaction.IsIncome;
+                    bool approved = transaction.IsApproved;
+                    ListViewOutcome.Items.Add(new FinancialMovementsItem { ID = id, Summ = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, IsIncome = income, IsApproved = approved, Description = descriptionCategory, Date = formattedDate });
                 }
             }
         }
 
+        private void CheckBoxShowOutcomeOnly_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            LoadListViewOutcome();
+        }
+
+        private void CheckBoxShowOutcomeOnly_Unchecked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            LoadListView();
+        }
     }
 }

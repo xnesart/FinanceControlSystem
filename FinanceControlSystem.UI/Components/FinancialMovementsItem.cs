@@ -10,8 +10,10 @@ namespace FinanceControlSystem.UI.Components
     public class FinancialMovementsItem
     {
         public int ID { get; set; }
-        public string Outcome { get; set; }
-        public string Income { get; set; }
+        public string Summ { get; set; }
+        //public string Summ { get; set; }
+        public bool IsIncome { get; set; }
+        public bool IsApproved { get; set; }
         public string Category { get; set; }
         public string Account { get; set; }
         public string Description { get; set; }

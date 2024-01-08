@@ -72,12 +72,13 @@ namespace FinanceControlSystem.UI.Components
                 Summ = sum,
                 IsApproved = true,
                 Date = date,
+                IsIncome = true,
             };
 
             int lastId = _dataStorage.GetTransactionLastID();
 
             //переносим данные транзакции в ListView
-            ListViewIncome.Items.Add(new FinancialMovementsItem { ID = lastId, Income = sum.ToString(), Category = sCategoryOfIncome, Account = sClientFinanceType, Description = description, Date = formattedDate });
+            ListViewIncome.Items.Add(new FinancialMovementsItem { ID = lastId, Summ = sum.ToString(), Category = sCategoryOfIncome, Account = sClientFinanceType, Description = description, Date = formattedDate });
 
             SumTransactionForClientFinanceType(sum, sClientFinanceType);
             _dataStorage.AddTransaction(transaction);
@@ -133,7 +134,7 @@ namespace FinanceControlSystem.UI.Components
                     string sClientsFinanceType = transaction.ClientsFinanceType.ToString();
                     string descriptionCategory = transaction.Name.ToString();
                     string formattedDate = transaction.Date.ToString();
-                    ListViewIncome.Items.Add(new FinancialMovementsItem { ID = id, Income = sCategoryOfIncome.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = formattedDate });
+                    ListViewIncome.Items.Add(new FinancialMovementsItem { ID = id, Summ = sCategoryOfIncome.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = formattedDate });
                 }
             }
         }

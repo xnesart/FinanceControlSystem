@@ -25,6 +25,7 @@ namespace FinanceControlSystem.Logics.Models
         public TransactionType Type { get; set; }
 
         public bool IsApproved { get; set; }
+        public bool IsIncome { get; set; }
         public bool IsDebt { get; set; }
     }
 }

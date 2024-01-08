@@ -31,9 +31,11 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="ID тразнакции" DisplayMemberBinding="{Binding ID}"/>
-                        <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Sum}"/>
+                        <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Summ}"/>
                         <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category}"/>
                         <GridViewColumn Header="Счёт" DisplayMemberBinding="{Binding Account}"/>
+                        <GridViewColumn Header="Доход?" DisplayMemberBinding="{Binding IsIncome}"/>
+                        <GridViewColumn Header="Проведена?" DisplayMemberBinding="{Binding IsApproved}"/>
                         <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}"/>
                         <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}"/>
                     </GridView.Columns>
@@ -47,17 +49,18 @@
         <Label x:Name="LabelCategory" Content="Категория" HorizontalAlignment="Left" Margin="12,49,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="ComboBoxCategory" Grid.Column="1" HorizontalAlignment="Left" Margin="15,49,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:PaymentsCategoryType}}}" SelectedIndex="0"/>
         <Label x:Name="LabelDate" Content="Дата" HorizontalAlignment="Left" Margin="12,10,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.168,1.464"/>
-        <DatePicker HorizontalAlignment="Left" Margin="63,12,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="63,12,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <Button x:Name="ButtonAddTransaction" Content="Добавить транзакцию" HorizontalAlignment="Left" Padding="5" Margin="5,10,0,0" Grid.Row="4" VerticalAlignment="Top"/>
-        <Label Content="Провести Операцию?" HorizontalAlignment="Left" Margin="7,6,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <Label x:Name="LabelAskOperation" Content="Провести Операцию?" HorizontalAlignment="Left" Margin="7,6,0,0" Grid.Row="3" VerticalAlignment="Top"/>
         <Label x:Name="LabelName" Content="Описание транзакции" HorizontalAlignment="Left" Margin="12,10,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.322,0.566"/>
         <TextBox x:Name="TextBoxName" Grid.Column="1" HorizontalAlignment="Left" Margin="15,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="ComboBoxClientsFinanceType" Grid.Column="1" HorizontalAlignment="Left" Margin="15,44,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding }"/>
         <Label x:Name="LabelClientsFinanceType" Content="Счёт транзакции" HorizontalAlignment="Left" Margin="12,44,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-0.032,0.381"/>
         <StackPanel Grid.Column="1" Grid.Row="2">
-            <RadioButton Content="Расход"/>
-            <RadioButton Content="Доход"/>
+            <RadioButton x:Name="RadioButtonOutcome" Content="Расход" IsChecked="True"/>
+            <RadioButton x:Name="RadioButtonIncome" Content="Доход"/>
 
         </StackPanel>
+        <CheckBox x:Name="CheckBoxShowOutcomeOnly" Grid.Column="2" Content="Показать только расходы" HorizontalAlignment="Left" Margin="239,20,0,0" Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="0.8,1.027" Checked="CheckBoxShowOutcomeOnly_Checked" Unchecked="CheckBoxShowOutcomeOnly_Unchecked"/>
     </Grid>
 </UserControl>

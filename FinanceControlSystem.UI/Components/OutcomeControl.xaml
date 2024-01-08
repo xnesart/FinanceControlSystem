@@ -35,7 +35,7 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="ID тразнакции" DisplayMemberBinding="{Binding ID}"/>
-                        <GridViewColumn Header="Расход" DisplayMemberBinding="{Binding Outcome}"/>
+                        <GridViewColumn Header="Расход" DisplayMemberBinding="{Binding Summ}"/>
                         <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category}"/>
                         <GridViewColumn Header="Счёт" DisplayMemberBinding="{Binding Account}"/>
                         <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}"/>
