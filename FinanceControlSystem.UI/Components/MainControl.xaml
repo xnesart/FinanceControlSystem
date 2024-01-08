@@ -35,7 +35,7 @@
         <Label x:Name="LabelCurrency" Content="Валюта" HorizontalAlignment="Left" Margin="33,19,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" RenderTransformOrigin="0.321,-5.968" Grid.Row="2"/>
         <Label x:Name="LabelDescription" Content="Описание счёта" HorizontalAlignment="Left" Margin="30,19,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.339,-0.064" FontFamily="Comic Sans MS" Grid.Row="3"/>
         <TextBox x:Name="TextBoxDescription" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="3" Margin="30,23,0,0"/>
-        <ComboBox x:Name="ComboBoxClientsFinanceType" HorizontalAlignment="Left" Margin="30,18,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:ClientsFinanceType}}}" Grid.Column="1" Grid.Row="1" SelectionChanged="ComboBoxClientsFinanceType_SelectionChanged_1"/>
-        <ComboBox x:Name="ComboBoxCurrencyType" HorizontalAlignment="Left" Margin="30,22,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type logic:CurrencyType}}}" SelectionChanged="ComboBoxCurrencyType_SelectionChanged" Grid.Column="1" Grid.Row="2"/>
+        <ComboBox x:Name="ComboBoxClientsFinanceType" HorizontalAlignment="Left" Margin="30,18,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:ClientsFinanceType}}}" Grid.Column="1" Grid.Row="1"/>
+        <ComboBox x:Name="ComboBoxCurrencyType" HorizontalAlignment="Left" Margin="30,22,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSource {x:Type logic:CurrencyType}}}" Grid.Column="1" Grid.Row="2"/>
     </Grid>
 </UserControl>

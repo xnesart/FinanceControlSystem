@@ -3,7 +3,6 @@ using FinanceControlSystem.Logics.Enum;
 using FinanceControlSystem.Logics.Models;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace FinanceControlSystem.UI.Components
 {
@@ -53,7 +52,7 @@ namespace FinanceControlSystem.UI.Components
                 Desciption = description
             };
             _dataStorage.AddClientFinanceModel(model);
-            _dataStorage.SaveToJson(_dataStorage);
+            _dataStorage.SaveToJson();
             _dataStorage = DataStorage.LoadFromJson();
             LoadListBox();
             TextBoxNameOfAccount.Text = "";
@@ -69,37 +68,12 @@ namespace FinanceControlSystem.UI.Components
                 if (model.Name == name)
                 {
                     _dataStorage.RemoveClientModelByID(model.Id);
-                    _dataStorage.SaveToJson(_dataStorage);
+                    _dataStorage.SaveToJson();
                     _dataStorage = DataStorage.LoadFromJson();
                     break;
                 }
             }
             LoadListBox();
-        }
-
-        private void SetLabelBackground(ref Label label, ClientsFinanceModel model)
-        {
-            if (model.Type == ClientsFinanceType.DebetCard)
-            {
-                label.Background = new SolidColorBrush(Colors.Aqua);
-            }
-            if (model.Type == ClientsFinanceType.CreditCard)
-            {
-                label.Background = new SolidColorBrush(Colors.DarkCyan);
-            }
-            if (model.Type == ClientsFinanceType.BankAccount)
-            {
-                label.Background = new SolidColorBrush(Colors.MediumVioletRed);
-            }
-            if (model.Type == ClientsFinanceType.Cash)
-            {
-                label.Background = new SolidColorBrush(Colors.Olive);
-            }
-            if (model.Type == ClientsFinanceType.Debt)
-            {
-                label.Background = new SolidColorBrush(Colors.Red);
-            }
-
         }
 
         private ClientsFinanceType GetClientFinanceTypeFromComboBox()
@@ -156,16 +130,6 @@ namespace FinanceControlSystem.UI.Components
             }
         }
 
-        private void ComboBoxClientsFinanceType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ComboBoxCurrencyType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void ListBoxMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ListBoxMain.SelectedIndex != -1)
@@ -179,11 +143,6 @@ namespace FinanceControlSystem.UI.Components
                 TextBoxBalance.Text = model.Balance.ToString();
                 TextBoxDescription.Text = model.Desciption;
             }
-        }
-
-        private void ComboBoxClientsFinanceType_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

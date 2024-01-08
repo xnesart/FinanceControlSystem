@@ -45,8 +45,10 @@
             </ListView.View>
         </ListView>
         <Button x:Name="ButtonAddOutcome" Content="Добавить расход" HorizontalAlignment="Left" Padding="5" Margin="10,50,0,0" Grid.Row="2" VerticalAlignment="Top" Click="ButtonAddOutcome_Click"/>
-        <Button x:Name="ButtonRemoveOutcome" Grid.Column="1" Content="Удалить расход" HorizontalAlignment="Left" Padding="5" Margin="10,50,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonRemoveOutcome" Content="Удалить расход" HorizontalAlignment="Left" Padding="5" Margin="13,45,0,0" Grid.Row="3" VerticalAlignment="Top" Click="ButtonRemoveOutcome_Click" Grid.Column="1"/>
         <DatePicker x:Name="DatePickerOutcomeDate" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" SelectedDate="{x:Static sys:DateTime.Now}"/>
         <Label Content="Дата списания" HorizontalAlignment="Left" Margin="11,10,0,0" Grid.Row="2" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
+        <Label x:Name="LabelRemoveOutcomeId" Content="ID расхода" HorizontalAlignment="Left" Margin="11,10,0,0" Grid.Row="3" VerticalAlignment="Top"  FontSize="14" FontFamily="Comic Sans MS"/>
+        <TextBox x:Name="TextBoxRemoveOutcome" HorizontalAlignment="Left" Margin="10,14,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
     </Grid>
 </UserControl>

@@ -33,9 +33,6 @@ namespace FinanceControlSystem.UI.Components
 
         private void FillComboBoxAccountOfPayments()
         {
-
-            //ComboBoxClientsFinanceType.Items.Clear();
-
             List<string> financeTypesNames = GetListOfFinanceTypesForComboBoxAccountOfPayments();
             ComboBoxClientsFinanceType.ItemsSource = financeTypesNames;
         }
@@ -88,24 +85,47 @@ namespace FinanceControlSystem.UI.Components
                 Date = date,
             };
 
-            int lastId = _dataStorage.GetTransactionLastID();
+            _dataStorage.AddTransaction(transaction);
+            int lastId = _dataStorage.GetTransactionLastID() - 1;
 
             //переносим данные транзакции в ListView
             ListViewOutcome.Items.Add(new FinancialMovementsItem { ID = lastId, Outcome = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = formattedDate });
 
             SubstractTransactionForClientFinanceType(dOutcomeSumm, accountName);
-            _dataStorage.AddTransaction(transaction);
-            _dataStorage.SaveToJson(_dataStorage);
+            
+            _dataStorage.SaveToJson();
+        }
+
+        private void ButtonRemoveOutcome_Click(object sender, RoutedEventArgs e)
+        {
+            int idOutcome = int.Parse(TextBoxRemoveOutcome.Text);
+            List<TransactionModel> models = _dataStorage.GetAllTransactionModels();
+            
+            foreach(TransactionModel model in models)
+            {
+                if(model.Id == idOutcome && model.Type == TransactionType.Outcome)
+                {
+                    _dataStorage.RemoveTransactionByID(idOutcome);
+                    break;
+                }
+            }
+
+            _dataStorage.SaveToJson();
+            LoadListView();
+            FillComboBoxAccountOfPayments();
+
         }
 
         private void LoadListView()
         {
-            int id = 1;
+            ListViewOutcome.Items.Clear();
+
             List<TransactionModel> transactionsList = _dataStorage.GetAllTransactionModels();
             foreach (TransactionModel transaction in transactionsList)
             {
                 if (transaction.Type == TransactionType.Outcome)
                 {
+                    int id = transaction.Id;
                     string dOutcomeSumm = transaction.Summ.ToString();
                     string sPaymentsCategoryType = transaction.PaymentsCategoryType.ToString();
                     string sClientsFinanceType = transaction.ClientsFinanceType.ToString();
@@ -113,8 +133,6 @@ namespace FinanceControlSystem.UI.Components
                     string formattedDate = transaction.Date.ToString();
                     ListViewOutcome.Items.Add(new FinancialMovementsItem { ID = id, Outcome = dOutcomeSumm.ToString(), Category = sPaymentsCategoryType, Account = sClientsFinanceType, Description = descriptionCategory, Date = formattedDate });
                 }
-
-                id++;
             }
         }
 

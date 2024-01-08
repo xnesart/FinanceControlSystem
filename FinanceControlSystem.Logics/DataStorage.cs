@@ -206,11 +206,11 @@ namespace FinanceControlSystem.Logics
         #endregion
 
         #region SaveAndLoad
-        public void SaveToJson(DataStorage data, string filePath = "DataStorageVault.json")
+        public void SaveToJson(string filePath = "DataStorageVault.json")
         {
             try
             {
-                string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
+                string jsonData = JsonConvert.SerializeObject(this, Formatting.Indented);
                 File.WriteAllText(filePath, jsonData);
                 Console.WriteLine("Данные успешно сохранены в файл JSON.");
             }

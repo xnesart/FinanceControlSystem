@@ -51,5 +51,8 @@
         <Button Content="Добавить доход" HorizontalAlignment="Left" Padding="5" Margin="25,0,0,0" Grid.Row="5" VerticalAlignment="Center" FontFamily="Comic Sans MS" FontSize="14" Click="Button_Click"/>
         <Label Content="Дата" HorizontalAlignment="Left" Margin="25,12,0,0" Grid.Row="4" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14" RenderTransformOrigin="0.394,3.463"/>
         <DatePicker x:Name="DatePickerIncomeDate" Grid.Column="1" HorizontalAlignment="Center" Margin="0,18,0,0" Grid.Row="4" VerticalAlignment="Top" SelectedDate="{x:Static sys:DateTime.Now}"/>
+        <Label x:Name="LabelRemoveIncome" Content="ID дохода" HorizontalAlignment="Left" Margin="25,10,0,0" Grid.Row="6" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14"/>
+        <TextBox x:Name="TextBoxRemoveIncome" Grid.Column="1" HorizontalAlignment="Left" Margin="18,16,0,0" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="ButtonDeleteIncome" Grid.Column="1" Content="Удалить доход" HorizontalAlignment="Left" Padding="5" Margin="18,10,0,0" Grid.Row="7" VerticalAlignment="Top" RenderTransformOrigin="-0.586,-0.208" Click="ButtonDeleteIncome_Click"/>
     </Grid>
 </UserControl>
