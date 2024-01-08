@@ -22,7 +22,7 @@
                         <GradientStop Color="#FFD28F8F" Offset="1"/>
                     </LinearGradientBrush>
                 </TabItem.Background>
-                
+
             </TabItem>
             <TabItem x:Name="TabItemOutcome" Header="Расходы">
                 <components:OutcomeControl x:Name="Outcome"></components:OutcomeControl>
@@ -31,7 +31,7 @@
                 <components:IncomeControl x:Name="Income"></components:IncomeControl>
             </TabItem>
             <TabItem Header="Планирование">
-                <Grid Background="#FFE5E5E5"/>
+                <components:PlanningControl x:Name="Planning"></components:PlanningControl>
             </TabItem>
 
         </TabControl>

@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="FinanceControlSystem.UI.Components.PlanningControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:FinanceControlSystem.UI.Components"
+             xmlns:logic="clr-namespace:FinanceControlSystem.Logics.Enum;assembly=FinanceControlSystem.Logics"
+             xmlns:extension="clr-namespace:FinanceControlSystem.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1000">
+    <Grid Background="#FFD28F8F">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Calendar HorizontalAlignment="Left" Margin="225,10,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Height="182" Width="248" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5"/>
+        <ListView x:Name="ListViewOutcome" Grid.Column="2" Grid.RowSpan="5" >
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="ID тразнакции" DisplayMemberBinding="{Binding ID}"/>
+                        <GridViewColumn Header="Сумма" DisplayMemberBinding="{Binding Sum}"/>
+                        <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category}"/>
+                        <GridViewColumn Header="Счёт" DisplayMemberBinding="{Binding Account}"/>
+                        <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <RadioButton x:Name="RadioButtonTrue" Content="Да" HorizontalAlignment="Left" Margin="13,0,0,0" Grid.Row="3" VerticalAlignment="Center" RenderTransformOrigin="1.077,-10.098" />
+        <RadioButton x:Name="RadioButtonFalse" Content="Нет" HorizontalAlignment="Left" Margin="72,0,0,0" Grid.Row="3" VerticalAlignment="Center" RenderTransformOrigin="0.589,14.267" IsChecked="True"/>
+        <Label x:Name="LabelSum" Content="Сколько потратите?" HorizontalAlignment="Left" Margin="12,18,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.453,0.285"/>
+        <TextBox x:Name="TextBoxSum" HorizontalAlignment="Left" Margin="15,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <Label x:Name="LabelCategory" Content="Категория" HorizontalAlignment="Left" Margin="12,49,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxCategory" Grid.Column="1" HorizontalAlignment="Left" Margin="15,49,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Source={extension:EnumBindingSourceExtension {x:Type logic:PaymentsCategoryType}}}" SelectedIndex="0"/>
+        <Label x:Name="LabelDate" Content="Дата" HorizontalAlignment="Left" Margin="12,10,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.168,1.464"/>
+        <DatePicker HorizontalAlignment="Left" Margin="63,12,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button x:Name="ButtonAddTransaction" Content="Добавить транзакцию" HorizontalAlignment="Left" Padding="5" Margin="5,10,0,0" Grid.Row="4" VerticalAlignment="Top"/>
+        <Label Content="Провести Операцию?" HorizontalAlignment="Left" Margin="7,6,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <Label x:Name="LabelName" Content="Описание транзакции" HorizontalAlignment="Left" Margin="12,10,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.322,0.566"/>
+        <TextBox x:Name="TextBoxName" Grid.Column="1" HorizontalAlignment="Left" Margin="15,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="ComboBoxClientsFinanceType" Grid.Column="1" HorizontalAlignment="Left" Margin="15,44,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" ItemsSource="{Binding }"/>
+        <Label x:Name="LabelClientsFinanceType" Content="Счёт транзакции" HorizontalAlignment="Left" Margin="12,44,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-0.032,0.381"/>
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <RadioButton Content="Расход"/>
+            <RadioButton Content="Доход"/>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

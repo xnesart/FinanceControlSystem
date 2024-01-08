@@ -20,7 +20,7 @@ namespace FinanceControlSystem.Logics
         private int _transactionsLastId;
         [JsonProperty]
         private int _clientsFinanceLastId;
-        private string _filePath;
+        private static string _filePath;
 
         public DataStorage()
         {
@@ -237,13 +237,13 @@ namespace FinanceControlSystem.Logics
                 Console.WriteLine($"Ошибка при сохранении в JSON: {ex.Message}");
             }
         }
-        public static DataStorage LoadFromJson(string filePath = "DataStorageVault.json")
+        public static DataStorage LoadFromJson()
         {
             try
             {
-                if (File.Exists(filePath))
+                if (File.Exists(_filePath))
                 {
-                    string jsonData = File.ReadAllText(filePath);
+                    string jsonData = File.ReadAllText(_filePath);
                     DataStorage loadedData = JsonConvert.DeserializeObject<DataStorage>(jsonData);
                     Console.WriteLine("Данные успешно загружены из файла JSON.");
                     return loadedData;

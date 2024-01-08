@@ -8,6 +8,6 @@ namespace FinanceControlSystem.Logics
 {
     public class Options
     {
-        public const string FilePath = @"\Vault\DataStorageVault.json";
+        public const string FilePath = @"DataStorageVault.json";
     }
 }
